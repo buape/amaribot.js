@@ -1,0 +1,64 @@
+/guild/:guild/member/:user {
+    id: "249955383001481216",
+    username: "KS Jaay",
+    exp: "213",
+    level: 3
+}
+
+/guild/leaderboard/:guild {
+  data: [{
+    id:"222239619897360385",
+    username:"Scarlette",
+    exp:"792140",
+    level:200
+  },
+  {
+    id:"2325235234232342",
+    username:"Not a person",
+    exp:"782140",
+    level: 199
+  }],
+  count: 50,
+  total_count: 1616
+}
+
+/guild/weekly/:guild {
+  [{
+    id:"222239619897360385",
+    username:"Scarlette",
+    exp:"792140"
+  },
+  {
+    id:"2325235234232342",
+    username:"Not a person",
+    exp:"782140"
+  }],
+  count: 50,
+  total_count: 1616
+ }
+
+/guild/rewards/:guild {
+  data: [{
+    roleID: "636731391358402600",
+    level: 5
+  },
+  {
+    roleID: "636732702292443196",
+    level: 25
+  },
+  {
+    roleID: "636731394655125524",
+    level: 50
+  }],
+  count: 3
+}
+
+
+// Extra params 
+Default: {
+  Page: 1,
+  Limit: 50
+}
+Leaderboard: page & limit
+Weekly: page & limit
+Rewards: page & limit

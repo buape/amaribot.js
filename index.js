@@ -1,1 +1,1 @@
-module.exports = require("./src")
+module.exports = console.log("Hi why are you here, the API isn't released yet!")

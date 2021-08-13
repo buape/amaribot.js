@@ -1,10 +1,11 @@
 {
   "name": "amaribot.js",
-  "version": "0.0.1",
+  "version": "0.0.1a",
   "description": "A node.js wrapper for the AmariBot API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "npx jsdoc -d docs ."
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/thewilloftheshadow/amaribot.js/issues"
   },
-  "homepage": "https://github.com/thewilloftheshadow/amaribot.js#readme"
+  "homepage": "https://github.com/thewilloftheshadow/amaribot.js#readme",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2",
+    "jsdoc-to-markdown": "^7.0.1"
+  }
 }
