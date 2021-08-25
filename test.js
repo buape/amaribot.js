@@ -20,3 +20,18 @@ describe("getUserLevel", async () => {
         expect(user.level).to.be.a("number")
     })
 })
+
+describe("getGuildLeaderboard", async (done) => {
+    let lb
+    it(`should return a Leaderboard`, async () => {
+        lb = await client.getGuildLeaderboard(guildId)
+        expect(lb).to.be.a(Leaderboard)
+    }).timeout(15000)
+    it(`should have vaild pieces of the Leaderboard`, async () => {
+        expect(lb.count).to.be.a("number")
+        expect(lb.totalCount).to.be.a("number")
+        expect(lb.id).to.be.a("string")
+        expect(lb.data).to.be.an("array")
+        expect(lb.data[0]).to.be.a(User)
+    })
+})

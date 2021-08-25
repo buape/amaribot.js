@@ -1,5 +1,5 @@
 const RequestHandler = require("./RequestHandler")
-const { User } = require("./structures")
+const { User, Leaderboard } = require("./structures")
 
 class Client {
     /**
@@ -45,14 +45,14 @@ class Client {
      * @public
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
      * @throws {TypeError}
-     * @returns {Promise<Leaderboard>} User object.
+     * @returns {Promise<Leaderboard>} Leaderboard object.
      */
-    async getUserLevel(guildId, userId) {
+    async getGuildLeaderboard(guildId) {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
-        if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
-        const data = await this._request(`/guild/${guildId}/member/${userId}`)
-        return new User(data)
+        const data = await this._request(`/guild/leaderboard/${guildId}`)
+        data.id = guildId
+        return new Leaderboard(data)
     }
 
     /**
