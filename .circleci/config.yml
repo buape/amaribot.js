@@ -11,9 +11,6 @@ jobs:
             - checkout
             - node/install-packages
             - run:
-                  name: Setup modules
-                  command: npm run module-setup
-            - run:
                   name: Run tests
                   command: npm test
 
