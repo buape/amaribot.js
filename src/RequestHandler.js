@@ -24,6 +24,7 @@ class RequestHandler {
                         "Content-Type": "application/json",
                     },
                     baseURL: this._client.baseURL,
+                    url: endpoint,
                     method: method,
                     data: {},
                     params: query,

@@ -30,8 +30,6 @@ class User {
          */
         Object.defineProperty(this, "rawData", { value: data })
     }
-
-    get id() {
-        return this.id
-    }
 }
+
+module.exports = User

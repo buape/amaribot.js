@@ -18,7 +18,7 @@ class Client {
         if (options.maxRetries !== undefined && typeof options.maxRetries !== "number") throw new TypeError("maxRetries must be a number")
 
         this.token = token
-        this.baseURL = "https://api.amaribot.com"
+        this.baseURL = "https://amaribot.com/api/v1"
         this.requestHandler = new RequestHandler(this)
     }
 
@@ -64,7 +64,7 @@ class Client {
      * @param {object} [query={}] - Query parameters
      * @returns {Promise<any>} The raw request data
      */
-    _request(endpoint, type = "GET", query = {}) {
+    _request(endpoint, method = "GET", query = {}) {
         return this.requestHandler.request(endpoint, method, query)
     }
 }

@@ -1,6 +1,6 @@
-const { User } = require("./index")
+const { User, User } = require("./index")
 
-class Leaderboard {
+module.exports = class Leaderboard {
     constructor(data = {}) {
         /**
          * The guild's Discord ID
@@ -22,9 +22,13 @@ class Leaderboard {
 
         /**
          * The leaderboard array
-         * @type {string}
+         * Array elements are Users
+         * @type {array}
          */
-        this.leaderboard = data.leaderboard
+        this.leaderboard = []
+        data.data.forEach(x => {
+            this.leaderboard.push(new User(x))
+        })
 
         /**
          * Raw data from the API
@@ -36,4 +40,10 @@ class Leaderboard {
     get id() {
         return this.id
     }
+
+    async nextPage () {
+        
+    }
 }
+
+module.exports = Leaderboard
