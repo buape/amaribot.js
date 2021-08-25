@@ -47,12 +47,53 @@ class Client {
      * @throws {TypeError}
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
-    async getGuildLeaderboard(guildId) {
+    async getGuildLeaderboard(guildId, options = {}) {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        
 
         const data = await this._request(`/guild/leaderboard/${guildId}`)
         data.id = guildId
         return new Leaderboard(data)
+    }
+
+    /**
+     * Get a guild's weekly leaderboard
+     *
+     * @public
+     * @param {string} guildId - The guild ID to fetch the leaderboard from.
+     * @throws {TypeError}
+     * @returns {Promise<Leaderboard>} Leaderboard object.
+     */
+    async getWeeklyLeaderboard(guildId, options = {}) {
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        
+
+        const data = await this._request(`/guild/weekly/${guildId}`)
+        data.id = guildId
+        return new Leaderboard(data)
+    }
+
+    /**
+     * Get a guild's weekly leaderboard
+     *
+     * @public
+     * @param {string} guildId - The guild ID to fetch the leaderboard from.
+     * @throws {TypeError}
+     * @returns {Promise<Leaderboard>} Leaderboard object.
+     */
+    async getGuildRewards(guildId, options = {}) {
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        
+
+        const data = await this._request(`/guild/weekly/${guildId}`)
+        data.id = guildId
+        return new Rewards(data)
     }
 
     /**

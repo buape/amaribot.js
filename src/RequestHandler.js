@@ -1,6 +1,6 @@
 const axios = require("axios")
 const Bucket = require("./structures/Bucket")
-const { APIError, HTTPError } = require("./errors")
+const { APIError, HTTPError, RatelimitError } = require("./errors")
 const MajorParams = ["guilds"]
 
 class RequestHandler {
@@ -34,41 +34,10 @@ class RequestHandler {
                     //  Increase the number of attempts
                     ++_attempts
 
-                    //  Add the rate limit header data to the bucket
-                    this.parseRateLimitHeaders(route, res.headers)
-
-                    //  Reject with an APIError or HTTPError
-                    const rejectWithError = () => {
-                        if (res.data && res.data.error) {
-                            reject(new APIError(res))
-                        } else {
-                            reject(new HTTPError(res))
-                        }
-                    }
-
-                    const retryRequest = () => {
-                        //  Use the retry-after header to schedule the request to retry
-                        if (res.headers["retry-after"]) {
-                            setTimeout(() => {
-                                this.request(endpoint, method, query, _attempts).then(resolve).catch(reject)
-                            }, +res.headers["retry-after"])
-                        } else {
-                            //  Retry immediately if no retry-after header
-                            this.request(endpoint, method, query, _attempts).then(resolve).catch(reject)
-                        }
-                    }
-
                     if (res.status >= 200 && res.status < 300) {
                         resolve(res.data)
                     } else if (res.status === 429) {
-                        //  Check if too many retry attempts
-                        if (_attempts >= this._client.maxRetries) {
-                            rejectWithError()
-                        } else {
-                            retryRequest()
-                        }
-                    } else {
-                        rejectWithError()
+                        throw new RatelimitError(res)
                     }
 
                     callback()
