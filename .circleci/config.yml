@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+    node: circleci/node@4.1
+
+jobs:
+    build-and-test:
+        docker:
+            - image: cimg/node:16.7.0
+        steps:
+            - checkout
+            - node/install-packages
+            - run:
+                  name: Setup modules
+                  command: npm run module-setup
+            - run:
+                  name: Run tests
+                  command: npm test
+
+workflows:
+    Error Test:
+        jobs:
+            - build-and-test
