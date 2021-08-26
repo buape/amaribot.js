@@ -2,7 +2,7 @@ const expect = require("expect.js")
 const { User, Leaderboard, Rewards } = require("./src/structures")
 
 const amaribot = require("./src")
-const client = new amaribot.Client(process.env.amaribot, {debug: true})
+const client = new amaribot.Client(process.env.amaribot)
 
 const guildId = "346474194394939393"
 const userId = "439223656200273932"

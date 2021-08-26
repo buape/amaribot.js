@@ -1,5 +1,5 @@
 const RequestHandler = require("./RequestHandler")
-const { User, Leaderboard, ClientOptions } = require("./structures")
+const { User, Leaderboard, ClientOptions, Rewards } = require("./structures")
 
 class Client {
     /**
@@ -34,6 +34,8 @@ class Client {
      * @returns {Promise<User>} User object.
      */
     async getUserLevel(guildId, userId) {
+        if(this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - User: ${userId}`)
+
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
@@ -50,9 +52,12 @@ class Client {
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getGuildLeaderboard(guildId, options = {}) {
+        if(this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
+        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
         const data = await this._request(`/guild/leaderboard/${guildId}`)
@@ -69,9 +74,11 @@ class Client {
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getWeeklyLeaderboard(guildId, options = {}) {
+        if(this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
+        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
         const data = await this._request(`/guild/weekly/${guildId}`)
@@ -80,20 +87,23 @@ class Client {
     }
 
     /**
-     * Get a guild's weekly leaderboard
+     * Get a guild's rewards
      *
      * @public
-     * @param {string} guildId - The guild ID to fetch the leaderboard from.
+     * @param {string} guildId - The guild ID to fetch the rewards from.
      * @throws {TypeError}
-     * @returns {Promise<Leaderboard>} Leaderboard object.
+     * @returns {Promise<Rewards>} Rewards object.
      */
     async getGuildRewards(guildId, options = {}) {
+        if(this.debug) console.debug(`Event: getGuildRewards\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
+        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
-        const data = await this._request(`/guild/weekly/${guildId}`)
+        const data = await this._request(`/guild/rewards/${guildId}`)
         data.id = guildId
         return new Rewards(data)
     }
