@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test.js",
-    "docs": "npx jsdoc ./src -r -d docs -p -t node_modules/docdash --readme README.md"
+    "docs": "npx jsdoc ./src -r -d docs -t node_modules/docdash --readme README.md"
   },
   "repository": {
     "type": "git",
