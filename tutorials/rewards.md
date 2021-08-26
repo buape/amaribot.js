@@ -1,5 +1,3 @@
-# Leaderboard
-
 This is a simple example of a bot that can display the rewards for different levels
 
 ```js

@@ -1,5 +1,8 @@
 # amaribot.js
 
+<img src="https://amaribot.com/images/Logo.png" alt="Logo" width="200"/>    
+
+
 ![Tests](https://img.shields.io/circleci/build/github/amaribot-js/amaribot.js?label=tests&style=for-the-badge&token=24376d2c92845c64381ef6cb370c80b32c7704eb)
 ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/amaribot.js?style=for-the-badge)
 ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/amaribot.js?style=for-the-badge)     

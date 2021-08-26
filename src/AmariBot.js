@@ -1,5 +1,5 @@
 const RequestHandler = require("./RequestHandler")
-const { User, Leaderboard, ClientOptions, Rewards } = require("./structures")
+const { User, Leaderboard, Rewards } = require("./structures")
 
 class AmariBot {
     /**
@@ -7,7 +7,7 @@ class AmariBot {
      * @constructs AmariBot
      * @description This is the main class that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
-     * @param {object} options - Additional options for the client
+     * @param {object} options - Additional options for the API handler
      * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
      * @param {string} [options.baseURL="https://amaribot.com/api/v1"] - The base URL for the API requests, defaults to the amaribot.com v1 API

@@ -1,8 +1,8 @@
 const expect = require("expect.js")
 const { User, Leaderboard, Rewards } = require("./src/structures")
 
-const amaribot = require("./src")
-const client = new amaribot.Client(process.env.amaribot)
+const amaribotjs = require("./src")
+const AmariBot = new amaribotjs.AmariBot(process.env.amaribot)
 
 const guildId = "346474194394939393"
 const userId = "439223656200273932"
@@ -10,7 +10,7 @@ const userId = "439223656200273932"
 describe("getUserLevel", async () => {
     let user
     it(`should return a User`, async () => {
-        user = await client.getUserLevel(guildId, userId)
+        user = await AmariBot.getUserLevel(guildId, userId)
         expect(user).to.be.a(User)
     }).timeout(15000)
     it(`should have vaild pieces of the User`, async () => {
@@ -24,7 +24,7 @@ describe("getUserLevel", async () => {
 describe("getGuildLeaderboard", async (done) => {
     let lb
     it(`should return a Leaderboard`, async () => {
-        lb = await client.getGuildLeaderboard(guildId)
+        lb = await AmariBot.getGuildLeaderboard(guildId)
         expect(lb).to.be.a(Leaderboard)
     }).timeout(15000)
     it(`should have vaild pieces of the Leaderboard`, async () => {
@@ -40,7 +40,7 @@ describe("getGuildLeaderboard", async (done) => {
 describe("getWeeklyLeaderboard", async (done) => {
     let lb
     it(`should return a Leaderboard`, async () => {
-        lb = await client.getWeeklyLeaderboard(guildId)
+        lb = await AmariBot.getWeeklyLeaderboard(guildId)
         expect(lb).to.be.a(Leaderboard)
     }).timeout(15000)
     it(`should have vaild pieces of the Leaderboard`, async () => {
@@ -55,7 +55,7 @@ describe("getWeeklyLeaderboard", async (done) => {
 describe("getGuildRewards", async (done) => {
     let rewards
     it(`should return a Rewards`, async () => {
-        rewards = await client.getGuildRewards(guildId)
+        rewards = await AmariBot.getGuildRewards(guildId)
         console.log(rewards)
         expect(rewards).to.be.a(Rewards)
     }).timeout(15000)
