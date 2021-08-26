@@ -7,8 +7,10 @@ class Client {
      * @constructs Client
      * @description This is the Client that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
-     * @param {ClientOptions} [options] - Additional options for the client
-     * @throws {TypeError}
+     * @param {object} options - Additional options for the client
+     * @param {string} options.token - Your API token from the AmariBot website
+     * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
+     * @param {string} [options.baseURL="https://amaribot.com/api/v1"] - The base URL for the API requests, defaults to the amaribot.com v1 API
      */
     constructor(token, options = {}) {
         if (typeof token !== "string") throw new TypeError("The API token must be a string")
@@ -18,7 +20,7 @@ class Client {
 
         this.token = token
         this.debug = options.debug || false
-        this.baseURL = "https://amaribot.com/api/v1"
+        this.baseURL = options.baseURL || "https://amaribot.com/api/v1"
         this.requestHandler = new RequestHandler(this)
 
         if(this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
@@ -30,7 +32,6 @@ class Client {
      * @public
      * @param {string} guildId - The guild ID to fetch the user from.
      * @param {string} userId - The user ID to fetch in the guild.
-     * @throws {TypeError}
      * @returns {Promise<User>} User object.
      */
     async getUserLevel(guildId, userId) {
@@ -48,7 +49,9 @@ class Client {
      *
      * @public
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
-     * @throws {TypeError}
+     * @param {object} [options] - Additional options
+     * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
+     * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getGuildLeaderboard(guildId, options = {}) {
@@ -56,8 +59,7 @@ class Client {
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
-        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
         const data = await this._request(`/guild/leaderboard/${guildId}`)
@@ -70,15 +72,16 @@ class Client {
      *
      * @public
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
-     * @throws {TypeError}
+     * @param {object} [options] - Additional options
+     * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
+     * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getWeeklyLeaderboard(guildId, options = {}) {
         if(this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
-        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
         const data = await this._request(`/guild/weekly/${guildId}`)
@@ -91,6 +94,9 @@ class Client {
      *
      * @public
      * @param {string} guildId - The guild ID to fetch the rewards from.
+     * @param {object} [options] - Additional options
+     * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
+     * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
      * @throws {TypeError}
      * @returns {Promise<Rewards>} Rewards object.
      */
@@ -99,8 +105,7 @@ class Client {
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page) throw new Error("The page option is currently unavailable pending an API update")
-        //if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
         
 
         const data = await this._request(`/guild/rewards/${guildId}`)

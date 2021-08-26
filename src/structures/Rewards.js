@@ -1,3 +1,9 @@
+
+/** The rewards from a guild's config
+ * @property {string} id - The guild's Discord ID
+ * @property {number} count - The count of rewards the guild has
+ * @property {Map<number, string>} roles A Map of the role rewards in the guild
+ */
 class Rewards {
     /**
      *
@@ -5,22 +11,8 @@ class Rewards {
      * @description This is set of the Rewards from a guild
      */
     constructor(inputData = {}) {
-        /**
-         * @description The ID of the guild
-         * @type {string}
-         */
          this.count = inputData.id
-
-        /**
-         * @description The count of rewards the guild has
-         * @type {number}
-         */
         this.count = inputData.count
-
-        /**
-         * @description A map of all the rewards, and an array element is a Reward
-         * @type {Map}
-         */
         this.roles = new Map()
         inputData.data.forEach(x => {
             this.roles.set(x.level, x.roleId)

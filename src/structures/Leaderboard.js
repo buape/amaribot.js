@@ -1,35 +1,21 @@
 const User = require("./User")
 
+/** The leaderboard of a guild from the API
+ * @property {string} id - The guild's Discord ID
+ * @property {number} count - The count of users returned on this page
+ * @property {number}  totalCount - The total count of users on the leaderboard
+ * @property {array} data The leaderboard array, where array elements are Users
+ */
 class Leaderboard {
     /**
-     *
      * @constructs Leaderboard
+     * @param {object} InputData
      * @description This is a Leaderboard that is returned from the API
      */
     constructor(inputData = {}) {
-        /**
-         * @description The guild's Discord ID
-         * @type {string}
-         */
         this.id = inputData.id
-
-        /**
-         * 
-         * @description The count of users returned on this page
-         * @type {number}
-         */
         this.count = inputData.count
-
-        /**
-         * @description The total count of users on the leaderboard
-         * @type {number}
-         */
         this.totalCount = inputData.total_count
-
-        /**
-         * @description The leaderboard array, where array elements are Users
-         * @type {array}
-         */
         this.data = []
         inputData.data.forEach(x => {
             this.data.push(new User(x))
