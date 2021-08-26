@@ -8,14 +8,13 @@ class Leaderboard {
      */
     constructor(inputData = {}) {
         /**
-         * @property
          * @description The guild's Discord ID
          * @type {string}
          */
         this.id = inputData.id
 
         /**
-         * @property
+         * 
          * @description The count of users returned on this page
          * @type {number}
          */
