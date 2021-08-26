@@ -1,5 +1,5 @@
 module.exports = {
     version: require("../package.json").version,
-    Client: require("./Client"),
+    AmariBot: require("./AmariBot"),
     structures: require("./structures")
 }

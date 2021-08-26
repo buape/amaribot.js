@@ -1,11 +1,11 @@
 const RequestHandler = require("./RequestHandler")
 const { User, Leaderboard, ClientOptions, Rewards } = require("./structures")
 
-class Client {
+class AmariBot {
     /**
      *
-     * @constructs Client
-     * @description This is the Client that you initalize to perform all the requests to the API
+     * @constructs AmariBot
+     * @description This is the main class that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
      * @param {object} options - Additional options for the client
      * @param {string} options.token - Your API token from the AmariBot website
@@ -95,7 +95,6 @@ class Client {
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
      * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
-     * @throws {TypeError}
      * @returns {Promise<Rewards>} Rewards object.
      */
     async getGuildRewards(guildId, options = {}) {
@@ -124,4 +123,4 @@ class Client {
     }
 }
 
-module.exports = Client
+module.exports = AmariBot
