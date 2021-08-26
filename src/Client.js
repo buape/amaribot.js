@@ -23,7 +23,7 @@ class Client {
         this.baseURL = options.baseURL || "https://amaribot.com/api/v1"
         this.requestHandler = new RequestHandler(this)
 
-        if(this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
+        if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
     }
 
     /**
@@ -35,7 +35,7 @@ class Client {
      * @returns {Promise<User>} User object.
      */
     async getUserLevel(guildId, userId) {
-        if(this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - User: ${userId}`)
+        if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - User: ${userId}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (typeof userId !== "string") throw new TypeError("userId must be a string")
@@ -55,12 +55,11 @@ class Client {
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getGuildLeaderboard(guildId, options = {}) {
-        if(this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+        if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
-        
 
         const data = await this._request(`/guild/leaderboard/${guildId}`)
         data.id = guildId
@@ -78,11 +77,10 @@ class Client {
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getWeeklyLeaderboard(guildId, options = {}) {
-        if(this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+        if (this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
-        
 
         const data = await this._request(`/guild/weekly/${guildId}`)
         data.id = guildId
@@ -101,12 +99,11 @@ class Client {
      * @returns {Promise<Rewards>} Rewards object.
      */
     async getGuildRewards(guildId, options = {}) {
-        if(this.debug) console.debug(`Event: getGuildRewards\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+        if (this.debug) console.debug(`Event: getGuildRewards\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
-        
 
         const data = await this._request(`/guild/rewards/${guildId}`)
         data.id = guildId
