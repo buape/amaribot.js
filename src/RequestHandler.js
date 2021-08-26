@@ -1,19 +1,11 @@
 const axios = require("axios")
-const Bucket = require("./structures/Bucket")
-const { APIError, HTTPError, RatelimitError } = require("./errors")
-const MajorParams = ["guilds"]
-
+const { RatelimitError } = require("./errors")
 class RequestHandler {
     constructor(client) {
         this._client = client
-        this.ratelimits = {}
     }
 
     request(endpoint, method, query = {}, _attempts = 0) {
-        const route = this.getRoute(endpoint, method)
-        if (!this.ratelimits[route]) {
-            this.ratelimits[route] = new Bucket()
-        }
 
         return new Promise((resolve, reject) => {
             const fn = (callback) => {
@@ -34,47 +26,20 @@ class RequestHandler {
                     //  Increase the number of attempts
                     ++_attempts
 
+                    if(this._client.debug) console.debug(`Sending request to ${options.url}\nMethod:\n  ${options.method}\nParams:\n  ${query}`)
+
                     if (res.status >= 200 && res.status < 300) {
                         resolve(res.data)
+                        console.debug("Success: \n", res.data)
                     } else if (res.status === 429) {
+                        console.debug("Ratelimited: \n", res)
                         throw new RatelimitError(res)
                     }
-
                     callback()
                 })
             }
 
-            this.ratelimits[route].queue(fn)
         })
-    }
-
-    getRoute(method, endpoint) {
-        const route = endpoint.replace(/\/([a-z-]+)\/(?:(\d+))/g, (match, p) => {
-            return MajorParams.includes(p) ? match : `/${p}/:id`
-        })
-        return `${method}/${route}`
-    }
-
-    parseRateLimitHeaders(route, headers) {
-        const now = Date.now()
-
-        if (headers["x-ratelimit-limit"]) {
-            this.ratelimits[route].limit = +headers["x-ratelimit-limit"]
-        }
-
-        if (headers["x-ratelimit-remaining"] === undefined) {
-            this.ratelimits[route].remaining = 1
-        } else {
-            this.ratelimits[route].remaining = +headers["x-ratelimit-remaining"] || 0
-        }
-
-        if (headers["retry-after"]) {
-            this.ratelimits[route].reset = (+headers["retry-after"] || 1) + now
-        } else if (headers["x-ratelimit-reset"]) {
-            this.ratelimits[route].reset = Math.max(+headers["x-ratelimit-reset"], now)
-        } else {
-            this.ratelimits[route].reset = now
-        }
     }
 }
 
