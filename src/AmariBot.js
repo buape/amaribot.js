@@ -1,11 +1,11 @@
 const RequestHandler = require("./RequestHandler")
 const { User, Leaderboard, ClientOptions, Rewards } = require("./structures")
 
-class Client {
+class AmariBot {
     /**
      *
-     * @constructs Client
-     * @description This is the Client that you initalize to perform all the requests to the API
+     * @constructs AmariBot
+     * @description This is the main class that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
      * @param {object} options - Additional options for the client
      * @param {string} options.token - Your API token from the AmariBot website
@@ -124,4 +124,4 @@ class Client {
     }
 }
 
-module.exports = Client
+module.exports = AmariBot

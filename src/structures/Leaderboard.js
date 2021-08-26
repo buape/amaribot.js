@@ -4,7 +4,7 @@ const User = require("./User")
  * @property {string} id - The guild's Discord ID
  * @property {number} count - The count of users returned on this page
  * @property {number}  totalCount - The total count of users on the leaderboard
- * @property {array} data The leaderboard array, where array elements are Users
+ * @property {array<User>} data The leaderboard array, where array elements are Users
  */
 class Leaderboard {
     /**
