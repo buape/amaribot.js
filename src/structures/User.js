@@ -1,3 +1,9 @@
+/** A User from the API
+ * @property {string} id - The user's Discord ID
+ * @property {string} username - The user's Discord username
+ * @property {number} exp - The user's exp
+ * @property {number} level - The user's current level
+ */
 class User {
     /**
      *

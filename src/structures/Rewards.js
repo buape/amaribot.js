@@ -1,7 +1,7 @@
 /** The rewards from a guild's config
  * @property {string} id - The guild's Discord ID
  * @property {number} count - The count of rewards the guild has
- * @property {Map<number, string>} roles A Map of the role rewards in the guild
+ * @property {Map<number, string>} roles A Map of the role rewards in the guild. The key is the level, and the value is the role ID
  */
 class Rewards {
     /**
