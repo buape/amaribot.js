@@ -2,7 +2,7 @@ class Rewards {
     /**
      *
      * @constructs Rewards
-     * @description This is set of the Rewards from a 
+     * @description This is set of the Rewards from a guild
      */
     constructor(inputData = {}) {
         /**

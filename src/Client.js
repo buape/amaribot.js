@@ -1,5 +1,5 @@
 const RequestHandler = require("./RequestHandler")
-const { User, Leaderboard } = require("./structures")
+const { User, Leaderboard, ClientOptions } = require("./structures")
 
 class Client {
     /**
@@ -7,7 +7,7 @@ class Client {
      * @constructs Client
      * @description This is the Client that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
-     * @param {object} [options={}] - Additional options for the client
+     * @param {ClientOptions} [options] - Additional options for the client
      * @throws {TypeError}
      */
     constructor(token, options = {}) {

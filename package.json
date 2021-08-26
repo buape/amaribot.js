@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test.js",
-    "docs": "npx jsdoc -d docs ."
+    "docs": "npx jsdoc src src/Structures -d docs . -p -t node_modules/docdash --readme README.md"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,11 @@
   },
   "homepage": "https://github.com/thewilloftheshadow/amaribot.js#readme",
   "devDependencies": {
+    "docdash": "^1.2.0",
     "expect.js": "^0.3.1",
-    "mocha": "^9.1.0"
+    "minami": "^1.2.3",
+    "mocha": "^9.1.0",
+    "taffydb": "^2.7.3"
   },
   "dependencies": {
     "axios": "^0.21.1",
