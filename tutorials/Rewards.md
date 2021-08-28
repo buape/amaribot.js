@@ -12,5 +12,5 @@ const run = async (level) => {
     if(role) console.log(`You get the <@&${role}> role at level ${level}!`)
 }
 
-run()
+run(10)
 ```
