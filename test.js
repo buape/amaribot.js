@@ -13,12 +13,17 @@ describe("getUserLevel", async () => {
         user = await AmariBot.getUserLevel(guildId, userId)
         expect(user).to.be.a(User)
     }).timeout(15000)
-    it(`should have vaild pieces of the User`, async () => {
-        expect(user.exp).to.be.a("number")
-        expect(user.weeklyExp).to.be.a("number")
-        expect(user.id).to.be.a("string")
-        expect(user.username).to.be.a("string")
-        expect(user.level).to.be.a("number")
+    let parts = [
+        { prop: "exp", type: "number" },
+        { prop: "weeklyExp", type: "number" },
+        { prop: "id", type: "string" },
+        { prop: "username", type: "string" },
+        { prop: "level", type: "number" },
+    ]
+    parts.forEach((x) => {
+        it(`should have a ${x.type} for the ${x.prop} property`, async () => {
+            expect(user[x.prop]).to.be.a(x.type)
+        })
     })
 })
 
@@ -28,15 +33,21 @@ describe("getGuildLeaderboard", async (done) => {
         lb = await AmariBot.getGuildLeaderboard(guildId)
         expect(lb).to.be.a(Leaderboard)
     }).timeout(15000)
-    it(`should have vaild pieces of the Leaderboard`, async () => {
-        expect(lb.count).to.be.a("number")
-        expect(lb.totalCount).to.be.a("number")
-        expect(lb.id).to.be.a("string")
-        expect(lb.data).to.be.an("array")
+    let parts = [
+        { prop: "count", type: "number" },
+        { prop: "totalCount", type: "number" },
+        { prop: "id", type: "string" },
+        { prop: "data", type: "array" },
+    ]
+    parts.forEach((x) => {
+        it(`should have a ${x.type} for the ${x.prop} property`, async () => {
+            expect(lb[x.prop]).to.be.a(x.type)
+        })
+    })
+    it(`should have a vaild User for the first element of the data array`, async () => {
         expect(lb.data[0]).to.be.a(User)
     })
 })
-
 
 describe("getWeeklyLeaderboard", async (done) => {
     let lb
@@ -44,11 +55,18 @@ describe("getWeeklyLeaderboard", async (done) => {
         lb = await AmariBot.getWeeklyLeaderboard(guildId)
         expect(lb).to.be.a(Leaderboard)
     }).timeout(15000)
-    it(`should have vaild pieces of the Leaderboard`, async () => {
-        expect(lb.count).to.be.a("number")
-        expect(lb.totalCount).to.be.a("number")
-        expect(lb.id).to.be.a("string")
-        expect(lb.data).to.be.an("array")
+    let parts = [
+        { prop: "count", type: "number" },
+        { prop: "totalCount", type: "number" },
+        { prop: "id", type: "string" },
+        { prop: "data", type: "array" },
+    ]
+    parts.forEach((x) => {
+        it(`should have a ${x.type} for the ${x.prop} property`, async () => {
+            expect(lb[x.prop]).to.be.a(x.type)
+        })
+    })
+    it(`should have a vaild User for the first element of the data array`, async () => {
         expect(lb.data[0]).to.be.a(User)
     })
 })
@@ -59,10 +77,10 @@ describe("getGuildRewards", async (done) => {
         rewards = await AmariBot.getGuildRewards(guildId)
         expect(rewards).to.be.a(Rewards)
     }).timeout(15000)
-    it(`should have vaild pieces of the Rewards`, async () => {
+    it(`should have a number for the count property`, async () => {
         expect(rewards.count).to.be.a("number")
+    })
+    it(`should have a Map for the roles property`, async () => {
         expect(rewards.roles).to.be.a(Map)
     })
 })
-
-

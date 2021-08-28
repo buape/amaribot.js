@@ -34,13 +34,13 @@ class User {
          * @description The user's current level
          * @type {number}
          */
-        this.level = data.level
+        if(data.level) this.level = data.level
 
         /**
-         * @description The user's current level
+         * @description The user's current weekly exp
          * @type {number}
          */
-        this.weeklyExp = parseInt(data.weeklyExp, 10)
+         if(data.weeklyExp) this.weeklyExp = parseInt(data.weeklyExp, 10)
 
         /**
          * @private

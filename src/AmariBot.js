@@ -10,6 +10,7 @@ class AmariBot {
      * @param {object} options - Additional options for the API handler
      * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
+     * @param {boolean} [options.rawRoutes=true] - Controls whether the raw routes are used for the leaderboard requests. This will default to false in a future update once the non-raw routes are properly working.
      * @param {string} [options.baseURL="https://amaribot.com/api/v1"] - The base URL for the API requests, defaults to the amaribot.com v1 API
      */
     constructor(token, options = {}) {
@@ -17,10 +18,12 @@ class AmariBot {
         if (typeof options !== "object") throw new TypeError("options must be an object")
         if (options.baseURL !== undefined && typeof options.baseURL !== "string") throw new TypeError("baseURL must be a string")
         if (options.debug !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.debug must be a boolean")
+        if (options.rawRoutes !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.rawRoutes must be a boolean")
 
         this.token = token
         this.debug = options.debug || false
         this.baseURL = options.baseURL || "https://amaribot.com/api/v1"
+        this.rawRoutes = options.rawRoutes || true
         this.requestHandler = new RequestHandler(this)
 
         if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
@@ -61,7 +64,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/leaderboard/${guildId}`)
+        const data = await this._request(`/guild/raw/leaderboard/${guildId}`)
         data.id = guildId
         return new Leaderboard(data)
     }
@@ -82,7 +85,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/weekly/${guildId}`)
+        const data = await this._request(`/guild/raw/weekly/${guildId}`)
         data.id = guildId
         return new Leaderboard(data)
     }
