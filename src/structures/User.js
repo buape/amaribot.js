@@ -3,6 +3,7 @@
  * @property {string} username - The user's Discord username
  * @property {number} exp - The user's exp
  * @property {number} level - The user's current level
+ * @property {number} weeklyExp - The user's weekly exp
  */
 class User {
     /**
@@ -27,13 +28,19 @@ class User {
          * @description The user's exp
          * @type {number}
          */
-        this.exp = data.exp
+        this.exp = parseInt(data.exp, 10)
 
         /**
          * @description The user's current level
          * @type {number}
          */
         this.level = data.level
+
+        /**
+         * @description The user's current level
+         * @type {number}
+         */
+        this.weeklyExp = parseInt(data.weeklyExp, 10)
 
         /**
          * @private

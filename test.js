@@ -14,7 +14,8 @@ describe("getUserLevel", async () => {
         expect(user).to.be.a(User)
     }).timeout(15000)
     it(`should have vaild pieces of the User`, async () => {
-        expect(user.exp).to.be.a("string")
+        expect(user.exp).to.be.a("number")
+        expect(user.weeklyExp).to.be.a("number")
         expect(user.id).to.be.a("string")
         expect(user.username).to.be.a("string")
         expect(user.level).to.be.a("number")
@@ -56,7 +57,6 @@ describe("getGuildRewards", async (done) => {
     let rewards
     it(`should return a Rewards`, async () => {
         rewards = await AmariBot.getGuildRewards(guildId)
-        console.log(rewards)
         expect(rewards).to.be.a(Rewards)
     }).timeout(15000)
     it(`should have vaild pieces of the Rewards`, async () => {
