@@ -8,6 +8,7 @@ const guildId = "346474194394939393"
 const userId = "439223656200273932"
 
 describe("getUserLevel", async () => {
+    this.slow(250)
     let user
     it(`should return a User`, async () => {
         user = await AmariBot.getUserLevel(guildId, userId)
@@ -28,6 +29,7 @@ describe("getUserLevel", async () => {
 })
 
 describe("getGuildLeaderboard", async (done) => {
+    this.slow(1000)
     let lb
     it(`should return a Leaderboard`, async () => {
         lb = await AmariBot.getGuildLeaderboard(guildId)
@@ -50,6 +52,7 @@ describe("getGuildLeaderboard", async (done) => {
 })
 
 describe("getWeeklyLeaderboard", async (done) => {
+    this.slow(1000)
     let lb
     it(`should return a Leaderboard`, async () => {
         lb = await AmariBot.getWeeklyLeaderboard(guildId)
@@ -72,6 +75,7 @@ describe("getWeeklyLeaderboard", async (done) => {
 })
 
 describe("getGuildRewards", async (done) => {
+    this.slow(500)
     let rewards
     it(`should return a Rewards`, async () => {
         rewards = await AmariBot.getGuildRewards(guildId)
