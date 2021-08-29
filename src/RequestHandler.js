@@ -13,7 +13,7 @@ class RequestHandler {
                     Authorization: this._client.token,
                     "Content-Type": "application/json",
                 },
-                baseURL: this._client.baseURL,
+                baseURL: this._client.baseURL + this._client.version,
                 url: endpoint,
                 method: method,
                 data: {},

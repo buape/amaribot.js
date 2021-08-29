@@ -11,18 +11,22 @@ class AmariBot {
      * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
      * @param {boolean} [options.rawRoutes=true] - Controls whether the raw routes are used for the leaderboard requests. This will default to false in a future update once the non-raw routes are properly working.
-     * @param {string} [options.baseURL="https://amaribot.com/api/v1"] - The base URL for the API requests, defaults to the amaribot.com v1 API
+     * @param {string} [options.baseURL="https://amaribot.com/api/"] - The base URL for the API requests, defaults to the amaribot.com API
+     * @param {string} [options.version="v1"] - The base URL for the API requests, defaults v1
      */
     constructor(token, options = {}) {
         if (typeof token !== "string") throw new TypeError("The API token must be a string")
         if (typeof options !== "object") throw new TypeError("options must be an object")
         if (options.baseURL !== undefined && typeof options.baseURL !== "string") throw new TypeError("baseURL must be a string")
+        if (options.baseURL !== undefined && options.baseURL.endsWith("/")) throw new Error("baseURL must end with a /")
+        if (options.version !== undefined && typeof options.version !== "string") throw new TypeError("version must be a string")
         if (options.debug !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.debug must be a boolean")
         if (options.rawRoutes !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.rawRoutes must be a boolean")
 
         this.token = token
         this.debug = options.debug || false
-        this.baseURL = options.baseURL || "https://amaribot.com/api/v1"
+        this.baseURL = options.baseURL || "https://amaribot.com/api/"
+        this.version = options.version || "v1"
         this.rawRoutes = options.rawRoutes || true
         this.requestHandler = new RequestHandler(this)
 
