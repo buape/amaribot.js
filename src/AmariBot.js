@@ -10,7 +10,7 @@ class AmariBot {
      * @param {object} options - Additional options for the API handler
      * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
-     * @param {boolean} [options.rawRoutes=true] - Controls whether the raw routes are used for the leaderboard requests. This will default to false in a future update once the non-raw routes are properly working.
+     * @param {boolean} [options.rawRoutes=false] - Controls whether the raw routes are used for the leaderboard requests
      * @param {string} [options.baseURL="https://amaribot.com/api/"] - The base URL for the API requests, defaults to the amaribot.com API
      * @param {string} [options.version="v1"] - The base URL for the API requests, defaults v1
      */
@@ -27,7 +27,7 @@ class AmariBot {
         this.debug = options.debug || false
         this.baseURL = options.baseURL || "https://amaribot.com/api/"
         this.version = options.version || "v1"
-        this.rawRoutes = options.rawRoutes || true
+        this.rawRoutes = options.rawRoutes || false
         this.requestHandler = new RequestHandler(this)
 
         if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
