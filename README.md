@@ -20,4 +20,4 @@ npm install amaribot.js
 The full documentation for this library can be found at [https://amaribot.js.org](https://amaribot.js.org)
 
 ## Support
-If you have any questions or need assistance with this module, go to the [AmariBot Support Server](https://discord.gg/EQWMP2uzTp) and ping TheShadow#8124[
+If you have any questions or need assistance with this module, go to the [AmariBot Support Server](https://discord.gg/EQWMP2uzTp) and ping TheShadow#8124
