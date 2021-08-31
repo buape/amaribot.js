@@ -18,7 +18,7 @@ class AmariBot {
         if (typeof token !== "string") throw new TypeError("The API token must be a string")
         if (typeof options !== "object") throw new TypeError("options must be an object")
         if (options.baseURL !== undefined && typeof options.baseURL !== "string") throw new TypeError("baseURL must be a string")
-        if (options.baseURL !== undefined && options.baseURL.endsWith("/")) throw new Error("baseURL must end with a /")
+        if (options.baseURL !== undefined && !options.baseURL.endsWith("/")) throw new Error("baseURL must end with a /")
         if (options.version !== undefined && typeof options.version !== "string") throw new TypeError("version must be a string")
         if (options.debug !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.debug must be a boolean")
         if (options.rawRoutes !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.rawRoutes must be a boolean")
