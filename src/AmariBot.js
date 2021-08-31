@@ -39,6 +39,8 @@ class AmariBot {
      * @public
      * @param {string} guildId - The guild ID to fetch the user from.
      * @param {string} userId - The user ID to fetch in the guild.
+     * @throws {APIError}
+     * @throws {RatelimitError}
      * @returns {Promise<User>} User object.
      */
     async getUserLevel(guildId, userId) {
@@ -59,6 +61,8 @@ class AmariBot {
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
      * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
+     * @throws {APIError}
+     * @throws {RatelimitError}
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getGuildLeaderboard(guildId, options = {}) {
@@ -81,6 +85,8 @@ class AmariBot {
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
      * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
+     * @throws {APIError}
+     * @throws {RatelimitError}
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
     async getWeeklyLeaderboard(guildId, options = {}) {
@@ -102,6 +108,8 @@ class AmariBot {
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
      * @param {number} [options.page=1] - Select which page you want to see on the leaderboard
+     * @throws {APIError}
+     * @throws {RatelimitError}
      * @returns {Promise<Rewards>} Rewards object.
      */
     async getGuildRewards(guildId, options = {}) {
@@ -121,6 +129,8 @@ class AmariBot {
      * @public
      * @param {string} guildId - The guild ID to fetch the user from.
      * @param {string} userId - The user ID to fetch in the guild.
+     * @throws {APIError}
+     * @throws {RatelimitError}
      * @returns {Promise<number>} The user's position
      */
     async getLeaderboardPosition(guildId, userId, options = {}) {
@@ -143,6 +153,7 @@ class AmariBot {
      * @param {string} endpoint - The API endpoint to request
      * @param {string} [method="GET"] - The HTTP method to use (GET, PUT, PATCH etc.)
      * @param {object} [query={}] - Query parameters
+     * @throws {RatelimitError}
      * @returns {Promise<any>} The raw request data
      */
     _request(endpoint, method = "GET", query = {}) {
