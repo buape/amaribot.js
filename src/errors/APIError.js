@@ -3,7 +3,7 @@ class APIError extends Error {
         super();
         this.name = this.constructor.name;
         this.status = response.status;
-        this.message = response.data?.error
+        this.message = response.data ? response.data.error : undefined
     }
 }
 
