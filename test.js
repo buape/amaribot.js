@@ -84,3 +84,14 @@ describe("getGuildRewards", async (done) => {
         expect(rewards.roles).to.be.a(Map)
     })
 })
+
+describe("getLeaderboardPosition", async (done) => {
+    let position
+    it(`should return a number greater than 0`, async () => {
+        position = await AmariBot.getLeaderboardPosition(guildId, userId)
+        expect(position).to.be.a("number")
+    })
+    it(`should be greater than 0`, async () => {
+        expect(position).to.be.above(0)
+    })
+})

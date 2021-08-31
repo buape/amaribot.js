@@ -68,7 +68,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/raw/leaderboard/${guildId}`)
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`)
         data.id = guildId
         return new Leaderboard(data)
     }
@@ -89,7 +89,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/raw/weekly/${guildId}`)
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`)
         data.id = guildId
         return new Leaderboard(data)
     }
@@ -112,8 +112,28 @@ class AmariBot {
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
         const data = await this._request(`/guild/rewards/${guildId}`)
-        data.id = guildId
         return new Rewards(data)
+    }
+
+    /**
+     * Get a user's position in the leaderboard
+     *
+     * @public
+     * @param {string} guildId - The guild ID to fetch the user from.
+     * @param {string} userId - The user ID to fetch in the guild.
+     * @returns {Promise<number>} The user's position
+     */
+    async getLeaderboardPosition(guildId, userId, options = {}) {
+        if (this.debug) console.debug(`Event: getLeaderboardPosition\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+
+        const lb = await this.getGuildLeaderboard(guildId)
+        const userData = lb.rawData.data.find((x) => x.id == userId)
+        const position = lb.rawData.data.indexOf(userData)
+        if (lb.totalCount > 1000 && !position < 0) throw new Error(`The guild with the ID ${guildId} has more than 1000 people on the leaderboard, and the user is not in the first 1000 people in the guild's leaderboard! You need to check this yourself by fetching the leaderboard page by page and finding the user's position from there`)
+        if(!userData) throw new Error(`User ${userId} not found`)
+        return position
     }
 
     /**
@@ -121,7 +141,7 @@ class AmariBot {
      *
      * @private
      * @param {string} endpoint - The API endpoint to request
-     * @param {string} method - The HTTP method to use (GET, PUT, PATCH etc.)
+     * @param {string} [method="GET"] - The HTTP method to use (GET, PUT, PATCH etc.)
      * @param {object} [query={}] - Query parameters
      * @returns {Promise<any>} The raw request data
      */

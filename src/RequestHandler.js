@@ -1,5 +1,5 @@
 const axios = require("axios")
-const { RatelimitError } = require("./errors")
+const { RatelimitError, APIError } = require("./errors")
 class RequestHandler {
     constructor(client) {
         this._client = client
@@ -33,7 +33,10 @@ class RequestHandler {
                 } else if (res.status === 429) {
                     if (this._client.debug) console.debug("Ratelimited: \n", res) 
                     reject(new RatelimitError(res))
-                }
+                } else {
+                    if (this._client.debug) console.debug("API Error: \n", res) 
+                    reject(new APIError(res))
+                } 
             })
         })
     }
