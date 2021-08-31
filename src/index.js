@@ -5,7 +5,9 @@ updateNotifier({ pkg }).notify()
 module.exports = {
     version: pkg.version,
     AmariBot: require("./AmariBot"),
-    structures: require("./structures"),
+    Leaderboard: require("./structures").Leaderboard,
+    Rewards: require("./structures").Rewards,
+    User: require("./structures").User,
 }
 
 /*

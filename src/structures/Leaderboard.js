@@ -16,10 +16,7 @@ class Leaderboard {
         this.id = inputData.id
         this.count = inputData.count
         this.totalCount = inputData.total_count || this.count
-        this.data = []
-        inputData.data.forEach(x => {
-            this.data.push(new User(x))
-        })
+        this.data = inputData.data.map(x => new User(x));
 
         /**
          * @private
