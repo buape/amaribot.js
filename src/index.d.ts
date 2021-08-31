@@ -9,10 +9,10 @@ declare module 'amaribot.js' {
 		public rawRoutes: boolean;
 		public requestHandler: RequestHandler;
 		public constructor(token: string, options: AmariBotOptions);
-		public getUserLevel(guildId: string, userId: string): Promise<unknown>;
-		public getGuildLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<unknown>;
-		public getWeeklyLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<unknown>;
-		public getGuildRewards(guildId: string, options?: GetRewardOptions): Promise<unknown>;
+		public getUserLevel(guildId: string, userId: string): Promise<User>;
+		public getGuildLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>;
+		public getWeeklyLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>;
+		public getGuildRewards(guildId: string, options?: GetRewardOptions): Promise<Rewards>;
 		public getLeaderboardPosition(guildId: string, userId: string, options?: GetRewardOptions): Promise<number>;
 		private _request(endpoint: string, method?: string, query: any): Promise<any>;
 	}
@@ -38,30 +38,30 @@ declare module 'amaribot.js' {
 	}
 
 	export class Leaderboard {
-		public constructor(data: object);
+		public constructor(data: APILeaderboard);
 		public id: string;
 		public count: number;
 		public totalCount: number;
 		public data: User[];
-		private readonly rawData: object;
+		private readonly rawData: APILeaderboard;
 	}
 
 	export class Rewards {
-		public constructor(data: object);
+		public constructor(data: APIRewards);
 		public id: string;
 		public count: number;
 		public roles: Map<number, string>;
-		private readonly rawData: object;
+		private readonly rawData: APIRewards;
 	}
 
 	export class User {
-		public constructor(data: object);
+		public constructor(data: APIUser);
 		public id: string;
 		public username: string;
 		public exp: number;
 		public level: number | undefined;
 		public weeklyExp: number | undefined;
-		private readonly rawData: object;
+		private readonly rawData: APIUser;
 	}
 
 	export interface AmariBotOptions {
@@ -70,6 +70,32 @@ declare module 'amaribot.js' {
 		rawRoutes?: boolean;
 		baseURL?: string;
 		version?: string;
+	}
+
+	export interface APILeaderboard {
+		id: string;
+		count: number;
+		total_count?: number;
+		data: APIUser[];
+	}
+
+	export interface APIRewards {
+		id: string;
+		count: number;
+		data: APIRoleRewards;
+	}
+
+	export interface APIRoleRewards {
+		level: number;
+		roleId: number;
+	}
+
+	export interface APIUser {
+		id: string;
+		username: string;
+		exp: number;
+		level?: number;
+		weeklyExp?: number;
 	}
 
 	export interface GetLeaderboardOptions {

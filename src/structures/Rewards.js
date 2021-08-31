@@ -12,10 +12,10 @@ class Rewards {
     constructor(inputData = {}) {
         this.id = inputData.id
         this.count = inputData.count
-        this.roles = new Map()
-        inputData.data.forEach((x) => {
-            this.roles.set(x.level, x.roleId)
-        })
+        this.roles = inputData.data.reduce(
+            (map, v) => map.set(v.level, v.roleId),
+            new Map()
+        );
 
         /**
          * @private
