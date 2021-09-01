@@ -20,3 +20,6 @@ workflows:
     Error Test:
         jobs:
             - build-and-test
+            filters:
+                branches:
+                    only: master
