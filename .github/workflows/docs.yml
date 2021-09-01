@@ -22,6 +22,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_branch: docs
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           cname: amaribot.js.org
