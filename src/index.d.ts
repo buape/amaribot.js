@@ -14,6 +14,7 @@ declare module 'amaribot.js' {
 		public getWeeklyLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>;
 		public getGuildRewards(guildId: string, options?: GetRewardOptions): Promise<Rewards>;
 		public getLeaderboardPosition(guildId: string, userId: string, options?: GetRewardOptions): Promise<number>;
+		public getLeaderboardPosition(level: number): number;
 		private _request(endpoint: string, method?: string, query: any): Promise<any>;
 	}
 

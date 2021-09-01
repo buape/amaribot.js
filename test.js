@@ -95,3 +95,19 @@ describe("getLeaderboardPosition", async (done) => {
         expect(position).to.be.above(0)
     })
 })
+
+describe("getLeaderboardPosition", async (done) => {
+    let nextExp
+    it(`should return 35 for level 0`, async () => {
+        nextExp = AmariBot.getLevelExp(0)
+        expect(nextExp).to.be(35)
+    })
+    it(`should return 55 for level 1`, async () => {
+        nextExp = AmariBot.getLevelExp(1)
+        expect(nextExp).to.be(55)
+    })
+    it(`should return 2035 for level 10`, async () => {
+        nextExp = AmariBot.getLevelExp(10)
+        expect(nextExp).to.be(2035)
+    })
+})

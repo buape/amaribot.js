@@ -147,6 +147,22 @@ class AmariBot {
     }
 
     /**
+     * Get the exp needed to reach the next level up
+     *
+     * @public
+     * @param {string} level - The current level the user is at
+     * @throws {APIError}
+     * @throws {RatelimitError}
+     * @returns {number} Exp needed for next level up
+     */
+    getLevelExp(level) {
+        if (this.debug) console.debug(`Event: getLevelExp\n  - Level: ${level}`)
+        if(!typeof level == "number") throw new TypeError("The level provided must be a number!")
+        let value = 20 * (level * level) + 35
+        return value
+    }
+
+    /**
      * Internal method to hit the API
      *
      * @private
