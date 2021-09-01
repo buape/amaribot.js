@@ -71,8 +71,8 @@ class AmariBot {
         if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
-        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.limit !== undefined && typeof options.limit !== "string") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
         const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`)
         data.id = guildId
@@ -95,8 +95,8 @@ class AmariBot {
     async getWeeklyLeaderboard(guildId, options = {}) {
         if (this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
-        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
-        if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
+        if (options.limit !== undefined && typeof options.limit !== "string") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
         const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`)
         data.id = guildId
@@ -120,7 +120,7 @@ class AmariBot {
         if (this.debug) console.debug(`Event: getGuildRewards\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
-        if (options.limit !== undefined && typeof options.baseURL !== "string") throw new TypeError("options.limit must be a number")
+        if (options.limit !== undefined && typeof options.limit !== "string") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
         const data = await this._request(`/guild/rewards/${guildId}`)
@@ -142,6 +142,7 @@ class AmariBot {
         if (this.debug) console.debug(`Event: getLeaderboardPosition\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
         const lb = await this.getGuildLeaderboard(guildId)
         const userData = lb.rawData.data.find((x) => x.id == userId)
