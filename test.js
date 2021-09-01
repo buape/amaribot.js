@@ -30,7 +30,7 @@ describe("getUserLevel", async () => {
 describe("getGuildLeaderboard", async (done) => {
     let lb
     it(`should return a Leaderboard`, async () => {
-        lb = await AmariBot.getGuildLeaderboard(guildId)
+        lb = await AmariBot.getGuildLeaderboard(guildId, {limit: 69})
         expect(lb).to.be.a(Leaderboard)
     }).timeout(15000)
     let parts = [
@@ -46,6 +46,10 @@ describe("getGuildLeaderboard", async (done) => {
     })
     it(`should have a vaild User for the first element of the data array`, async () => {
         expect(lb.data[0]).to.be.a(User)
+    })
+    it(`should have a length for data of 69`, async () => {
+        expect(lb.data.length).to.be(69)
+        expect(lb.count).to.be(69)
     })
 })
 

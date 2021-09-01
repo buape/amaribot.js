@@ -74,7 +74,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`)
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`, options)
         data.id = guildId
         return new Leaderboard(data)
     }
@@ -98,7 +98,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`)
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`, options)
         data.id = guildId
         return new Leaderboard(data)
     }
@@ -123,7 +123,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.version !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/rewards/${guildId}`)
+        const data = await this._request(`/guild/rewards/${guildId}`, options)
         return new Rewards(data)
     }
 
@@ -178,8 +178,8 @@ class AmariBot {
      * @throws {RatelimitError}
      * @returns {Promise<any>} The raw request data
      */
-    _request(endpoint, method = "GET", query = {}) {
-        return this.requestHandler.request(endpoint, method, query)
+    _request(endpoint, query = {}, method = "GET", ) {
+        return this.requestHandler.request(endpoint, query, method)
     }
 }
 

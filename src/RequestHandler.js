@@ -5,7 +5,7 @@ class RequestHandler {
         this._client = client
     }
 
-    request(endpoint, method, query = {}, _attempts = 0) {
+    request(endpoint, query = {}, method, _attempts = 0) {
         return new Promise((resolve, reject) => {
             const options = {
                 validateStatus: null,
