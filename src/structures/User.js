@@ -34,7 +34,7 @@ class User {
          * @description The user's current level
          * @type {number}
          */
-        if(data.level) this.level = data.level
+        if(data.level || data.level == 0) this.level = data.level
 
         /**
          * @description The user's current weekly exp
