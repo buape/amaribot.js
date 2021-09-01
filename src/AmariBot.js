@@ -37,6 +37,7 @@ class AmariBot {
      * Get a users data relative to a guild.
      *
      * @public
+     * @async
      * @param {string} guildId - The guild ID to fetch the user from.
      * @param {string} userId - The user ID to fetch in the guild.
      * @throws {APIError}
@@ -57,6 +58,7 @@ class AmariBot {
      * Get a guild's leaderboard
      *
      * @public
+     * @async
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
@@ -81,6 +83,7 @@ class AmariBot {
      * Get a guild's weekly leaderboard
      *
      * @public
+     * @async
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
@@ -104,6 +107,7 @@ class AmariBot {
      * Get a guild's rewards
      *
      * @public
+     * @async
      * @param {string} guildId - The guild ID to fetch the rewards from.
      * @param {object} [options] - Additional options
      * @param {number} [options.limit=50] - Set a limit for the number of users listed, max 1000
@@ -127,6 +131,7 @@ class AmariBot {
      * Get a user's position in the leaderboard
      *
      * @public
+     * @async
      * @param {string} guildId - The guild ID to fetch the user from.
      * @param {string} userId - The user ID to fetch in the guild.
      * @throws {APIError}
