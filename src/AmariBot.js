@@ -147,7 +147,7 @@ class AmariBot {
         const lb = await this.getGuildLeaderboard(guildId)
         const userData = lb.rawData.data.find((x) => x.id == userId)
         const position = lb.rawData.data.indexOf(userData)
-        if (lb.totalCount > 1000 && position < 0) throw new Error(`The guild with the ID ${guildId} has more than 1000 people on the leaderboard, and the user is not in the first 1000 people in the guild's leaderboard! You need to check this yourself by fetching the leaderboard page by page and finding the user's position from there`)
+        if (lb.totalCount > 1000 && position < 0) throw new Error(`The guild with the ID ${guildId} has more than 1000 people on the leaderboard, and the user is not in the first 1000 people in the guild's leaderboard!\nYou need to check this yourself by fetching the leaderboard page by page and finding the user's position from there.\nIn the future, there will be a better way to handle this, but its simply not possible at the moment.`)
         if(!userData) throw new Error(`User ${userId} not found`)
         return position + 1
     }
