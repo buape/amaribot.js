@@ -6,12 +6,13 @@ declare module 'amaribot.js' {
 		public debug: boolean;
 		public baseURL: string;
 		public version: string;
-		public rawRoutes: boolean;
 		public requestHandler: RequestHandler;
 		public constructor(token: string, options: AmariBotOptions);
 		public getUserLevel(guildId: string, userId: string): Promise<User>;
 		public getGuildLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>;
+		public getRawGuildLeaderboard(guildId: string, options?: GetRawLeaderboardOptions): Promise<Leaderboard>;
 		public getWeeklyLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>;
+		public getRawWeeklyLeaderboard(guildId: string, options?: GetRawLeaderboardOptions): Promise<Leaderboard>;
 		public getGuildRewards(guildId: string, options?: GetRewardOptions): Promise<Rewards>;
 		public getLeaderboardPosition(guildId: string, userId: string, options?: GetRewardOptions): Promise<number>;
 		public getLeaderboardPosition(level: number): number;
@@ -100,6 +101,11 @@ declare module 'amaribot.js' {
 	}
 
 	export interface GetLeaderboardOptions {
+		limit?: number;
+		page?: number;
+	}
+
+	export interface GetRawLeaderboardOptions {
 		limit?: number;
 		page?: number;
 	}

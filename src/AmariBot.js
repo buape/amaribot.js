@@ -10,7 +10,6 @@ class AmariBot {
      * @param {object} options - Additional options for the API handler
      * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
-     * @param {boolean} [options.rawRoutes=false] - Controls whether the raw routes are used for the leaderboard requests
      * @param {string} [options.baseURL="https://amaribot.com/api/"] - The base URL for the API requests, defaults to the amaribot.com API
      * @param {string} [options.version="v1"] - The base URL for the API requests, defaults v1
      */
@@ -21,13 +20,11 @@ class AmariBot {
         if (options.baseURL !== undefined && !options.baseURL.endsWith("/")) throw new Error("baseURL must end with a /")
         if (options.version !== undefined && typeof options.version !== "string") throw new TypeError("version must be a string")
         if (options.debug !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.debug must be a boolean")
-        if (options.rawRoutes !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.rawRoutes must be a boolean")
 
         this.token = token
         this.debug = options.debug || false
         this.baseURL = options.baseURL || "https://amaribot.com/api/"
         this.version = options.version || "v1"
-        this.rawRoutes = options.rawRoutes || false
         this.requestHandler = new RequestHandler(this)
 
         if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
@@ -55,7 +52,7 @@ class AmariBot {
     }
 
     /**
-     * Get a guild's leaderboard
+     * Get a leaderboard of a guild
      *
      * @public
      * @async
@@ -74,13 +71,37 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`, options)
+        const data = await this._request(`/guild/leaderboard/${guildId}`, options)
+        data.id = guildId
+        return new Leaderboard(data)
+    }
+
+     /**
+     * Get the raw leaderboard of a guild
+     *
+     * @public
+     * @async
+     * @param {string} guildId - The guild ID to fetch the leaderboard from.
+     * @param {object} [options] - Additional options
+     * @param {number} [options.limit=50] - Set a limit for the number of users listed
+     * @throws {APIError}
+     * @throws {RatelimitError}
+     * @returns {Promise<Leaderboard>} Leaderboard object.
+     */
+      async getRawGuildLeaderboard(guildId, options = {}) {
+        if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
+        if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
+
+        const data = await this._request(`/guild/raw/leaderboard/${guildId}`, options)
         data.id = guildId
         return new Leaderboard(data)
     }
 
     /**
-     * Get a guild's weekly leaderboard
+     * Get the weekly leaderboard of a guild
      *
      * @public
      * @async
@@ -97,6 +118,28 @@ class AmariBot {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
+
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`, options)
+        data.id = guildId
+        return new Leaderboard(data)
+    }
+
+    /**
+     * Get the raw weekly leaderboard of a guild
+     *
+     * @public
+     * @async
+     * @param {string} guildId - The guild ID to fetch the leaderboard from.
+     * @param {object} [options] - Additional options
+     * @param {number} [options.limit=50] - Set a limit for the number of users listed
+     * @throws {APIError}
+     * @throws {RatelimitError}
+     * @returns {Promise<Leaderboard>} Leaderboard object.
+     */
+    async getRawWeeklyLeaderboard(guildId, options = {}) {
+        if (this.debug) console.debug(`Event: getWeeklyLeaderboard\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
 
         const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`, options)
         data.id = guildId
