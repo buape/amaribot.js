@@ -9,7 +9,6 @@ const User = require("./User")
 class Leaderboard {
     /**
      * @constructs Leaderboard
-     * @param {object} InputData
      * @description This is a Leaderboard that is returned from the API
      */
     constructor(inputData = {}) {
