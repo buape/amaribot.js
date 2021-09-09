@@ -187,12 +187,11 @@ class AmariBot {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
-        const lb = await this.getGuildLeaderboard(guildId, {limit: 1000})
+        const lb = await this.getRawGuildLeaderboard(guildId, {limit: 500000})
         const userData = lb.rawData.data.find((x) => x.id == userId)
-        const position = lb.rawData.data.indexOf(userData)
-        if (lb.totalCount > 1000 && position < 0) throw new Error(`The guild with the ID ${guildId} has more than 1000 people on the leaderboard, and the user is not in the first 1000 people in the guild's leaderboard!\nYou need to check this yourself by fetching the leaderboard page by page and finding the user's position from there.\nIn the future, there will be a better way to handle this, but its simply not possible at the moment.`)
         if(!userData) throw new Error(`User ${userId} not found`)
-        return position + 1
+        const position = lb.rawData.data.indexOf(userData)
+        return position + 1 // the position is from an array which is 0 based
     }
 
     /**
