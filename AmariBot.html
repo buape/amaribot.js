@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AmariBot.html">AmariBot</a><ul class='methods'><li data-type='method'><a href="AmariBot.html#getGuildLeaderboard">getGuildLeaderboard</a></li><li data-type='method'><a href="AmariBot.html#getGuildRewards">getGuildRewards</a></li><li data-type='method'><a href="AmariBot.html#getLeaderboardPosition">getLeaderboardPosition</a></li><li data-type='method'><a href="AmariBot.html#getLevelExp">getLevelExp</a></li><li data-type='method'><a href="AmariBot.html#getUserLevel">getUserLevel</a></li><li data-type='method'><a href="AmariBot.html#getWeeklyLeaderboard">getWeeklyLeaderboard</a></li></ul></li><li><a href="Leaderboard.html">Leaderboard</a></li><li><a href="Rewards.html">Rewards</a></li><li><a href="User.html">User</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AmariBot.html">AmariBot</a><ul class='methods'><li data-type='method'><a href="AmariBot.html#getGuildLeaderboard">getGuildLeaderboard</a></li><li data-type='method'><a href="AmariBot.html#getGuildRewards">getGuildRewards</a></li><li data-type='method'><a href="AmariBot.html#getLeaderboardPosition">getLeaderboardPosition</a></li><li data-type='method'><a href="AmariBot.html#getLevelExp">getLevelExp</a></li><li data-type='method'><a href="AmariBot.html#getRawGuildLeaderboard">getRawGuildLeaderboard</a></li><li data-type='method'><a href="AmariBot.html#getRawWeeklyLeaderboard">getRawWeeklyLeaderboard</a></li><li data-type='method'><a href="AmariBot.html#getUserLevel">getUserLevel</a></li><li data-type='method'><a href="AmariBot.html#getWeeklyLeaderboard">getWeeklyLeaderboard</a></li></ul></li><li><a href="Leaderboard.html">Leaderboard</a></li><li><a href="Rewards.html">Rewards</a></li><li><a href="User.html">User</a></li></ul>
 </nav>
 
 <div id="main">
@@ -71,7 +71,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line17">line 17</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -292,45 +292,6 @@
 
         <tr>
             
-                <td class="name"><code>rawRoutes</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">Controls whether the raw routes are used for the leaderboard requests</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>baseURL</code></td>
             
 
@@ -472,7 +433,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line70">line 70</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -512,7 +473,7 @@
 
 
 <div class="description usertext">
-    Get a guild's leaderboard
+    Get a leaderboard of a guild
 </div>
 
 
@@ -809,7 +770,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line119">line 119</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -1146,7 +1107,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line141">line 141</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line184">line 184</a>
     </li></ul></dd>
     
 
@@ -1355,7 +1316,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line164">line 164</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line207">line 207</a>
     </li></ul></dd>
     
 
@@ -1529,6 +1490,602 @@
 
     
 
+    <h4 class="name" id="getRawGuildLeaderboard"><span class="type-signature">(async) </span>getRawGuildLeaderboard<span class="signature">(guildId, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="Leaderboard.html">Leaderboard</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    Get the raw leaderboard of a guild
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>guildId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The guild ID to fetch the leaderboard from.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Additional options
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>50</code>
+                
+                </td>
+            
+
+            <td class="description last">Set a limit for the number of users listed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+<ul>
+        <li>
+
+    <div class="param-desc usertext">
+    
+        
+<span class="param-type">APIError</span>
+
+
+    
+    </div>
+
+</li>
+    
+        <li>
+
+    <div class="param-desc usertext">
+    
+        
+<span class="param-type">RatelimitError</span>
+
+
+    
+    </div>
+
+</li>
+    </ul>
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Leaderboard object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Leaderboard.html">Leaderboard</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getRawWeeklyLeaderboard"><span class="type-signature">(async) </span>getRawWeeklyLeaderboard<span class="signature">(guildId, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="Leaderboard.html">Leaderboard</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line139">line 139</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    Get the raw weekly leaderboard of a guild
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>guildId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The guild ID to fetch the leaderboard from.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Additional options
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>50</code>
+                
+                </td>
+            
+
+            <td class="description last">Set a limit for the number of users listed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+<ul>
+        <li>
+
+    <div class="param-desc usertext">
+    
+        
+<span class="param-type">APIError</span>
+
+
+    
+    </div>
+
+</li>
+    
+        <li>
+
+    <div class="param-desc usertext">
+    
+        
+<span class="param-type">RatelimitError</span>
+
+
+    
+    </div>
+
+</li>
+    </ul>
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Leaderboard object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="Leaderboard.html">Leaderboard</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="getUserLevel"><span class="type-signature">(async) </span>getUserLevel<span class="signature">(guildId, userId)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="User.html">User</a>>}</span></h4>
 
     
@@ -1541,7 +2098,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line47">line 47</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -1750,7 +2307,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line95">line 95</a>
+        <a href="AmariBot.js.html">AmariBot.js</a>, <a href="AmariBot.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -1790,7 +2347,7 @@
 
 
 <div class="description usertext">
-    Get a guild's weekly leaderboard
+    Get the weekly leaderboard of a guild
 </div>
 
 
@@ -2090,7 +2647,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Fri Sep 03 2021 03:06:34 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Thu Sep 09 2021 16:44:32 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
