@@ -7,7 +7,7 @@ class RequestHandler {
         this._client = client
     }
 
-    async request(endpoint, query = {}, method, _attempts = 0) {
+    async request(endpoint, query = {}, method, body, _attempts = 0) {
         await queue.wait()
         return new Promise((resolve, reject) => {
             const options = {
@@ -19,7 +19,7 @@ class RequestHandler {
                 baseURL: this._client.baseURL + this._client.version,
                 url: endpoint,
                 method: method,
-                data: {},
+                data: body,
                 params: query,
                 timeout: 15000,
             }
