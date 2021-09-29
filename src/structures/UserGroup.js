@@ -15,7 +15,7 @@ class UserGroup {
         this.id = inputData.guild
         this.count = inputData.total_members
         this.queriedCount = inputData.queried_members
-        this.data = inputData.data.map(x => new User(x));
+        this.data = inputData.members.map(x => new User(x));
 
         /**
          * @private

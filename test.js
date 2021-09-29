@@ -1,5 +1,5 @@
 const expect = require("expect.js")
-const { User, Leaderboard, Rewards } = require("./src/structures")
+const { User, Leaderboard, Rewards, UserGroup } = require("./src/structures")
 
 const amaribotjs = require("./src")
 const AmariBot = new amaribotjs.AmariBot(process.env.amaribot)
@@ -24,6 +24,32 @@ describe("getUserLevel", async () => {
         it(`should have a ${x.type} for the ${x.prop} property`, async () => {
             expect(user[x.prop]).to.be.a(x.type)
         })
+    })
+})
+
+describe("getUserLevel of multiple users", async () => {
+    let user
+    it(`should return a UserGroup`, async () => {
+        group = await AmariBot.getUserLevel(guildId, ["107510319315697664", "249955383001481216", "439223656200273932", "69420"])
+        expect(group).to.be.a(UserGroup)
+    }).timeout(15000)
+    let parts = [
+        { prop: "id", type: "string" },
+        { prop: "count", type: "number" },
+        { prop: "queriedCount", type: "number" },
+        { prop: "data", type: "array" }
+    ]
+    parts.forEach((x) => {
+        it(`should have a ${x.type} for the ${x.prop} property`, async () => {
+            expect(group[x.prop]).to.be.a(x.type)
+        })
+    })
+    it(`should have an array of Users in the data`, async () => {
+        expect(group.data[0]).to.be.a(User)
+    })
+    it(`should have one more queried count than the total count`, async () => {
+        expect(group.count).to.be(3)
+        expect(group.queriedCount).to.be(4)
     })
 })
 

@@ -1,5 +1,6 @@
 const RequestHandler = require("./RequestHandler")
 const { User, Leaderboard, Rewards } = require("./structures")
+const UserGroup = require("./structures/UserGroup")
 
 class AmariBot {
     /**
@@ -36,19 +37,27 @@ class AmariBot {
      * @public
      * @async
      * @param {string} guildId - The guild ID to fetch the user from.
-     * @param {string} userId - The user ID to fetch in the guild.
+     * @param {string|array} userId - The user ID or array of user IDs to fetch in the guild.
      * @throws {APIError}
      * @throws {RatelimitError}
-     * @returns {Promise<User>} User object.
+     * @returns {Promise<User>|Promise<UserGroup>} The returned user(s).
      */
     async getUserLevel(guildId, userId) {
         if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - User: ${userId}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
-        if (typeof userId !== "string") throw new TypeError("userId must be a string")
+        if (typeof userId !== "string" && !userId instanceof Array) throw new TypeError("userId must be a string or an array")
 
-        const data = await this._request(`/guild/${guildId}/member/${userId}`)
-        return new User(data)
+        if (typeof userId == "string") {
+            const data = await this._request(`/guild/${guildId}/member/${userId}`)
+            return new User(data)
+        } else if (userId instanceof Array) {
+            userId.forEach((x) => {
+                if (typeof x !== "string") throw new TypeError("Each user ID in the array must be a string")
+            })
+            const data = await this._request(`/guild/${guildId}/members`, {}, "POST", { members: userId })
+            return new UserGroup(data)
+        }
     }
 
     /**
@@ -76,19 +85,19 @@ class AmariBot {
         return new Leaderboard(data)
     }
 
-     /**
+    /**
      * Get the raw leaderboard of a guild
      *
      * @public
      * @async
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
      * @param {object} [options] - Additional options
-     * @param {number} [options.limit=50] - Set a limit for the number of users listed
+     * @param {number} [options.limit] - Set a limit for the number of users listed
      * @throws {APIError}
      * @throws {RatelimitError}
      * @returns {Promise<Leaderboard>} Leaderboard object.
      */
-      async getRawGuildLeaderboard(guildId, options = {}) {
+    async getRawGuildLeaderboard(guildId, options = {}) {
         if (this.debug) console.debug(`Event: getUserLevel\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
@@ -131,7 +140,7 @@ class AmariBot {
      * @async
      * @param {string} guildId - The guild ID to fetch the leaderboard from.
      * @param {object} [options] - Additional options
-     * @param {number} [options.limit=50] - Set a limit for the number of users listed
+     * @param {number} [options.limit] - Set a limit for the number of users listed
      * @throws {APIError}
      * @throws {RatelimitError}
      * @returns {Promise<Leaderboard>} Leaderboard object.
@@ -187,9 +196,9 @@ class AmariBot {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
-        const lb = await this.getRawGuildLeaderboard(guildId, {limit: 500000})
+        const lb = await this.getRawGuildLeaderboard(guildId, { limit: 500000 })
         const userData = lb.rawData.data.find((x) => x.id == userId)
-        if(!userData) throw new Error(`User ${userId} not found`)
+        if (!userData) throw new Error(`User ${userId} not found`)
         const position = lb.rawData.data.indexOf(userData)
         return position + 1 // the position is from an array which is 0 based
     }
@@ -205,7 +214,7 @@ class AmariBot {
      */
     getLevelExp(level) {
         if (this.debug) console.debug(`Event: getLevelExp\n  - Level: ${level}`)
-        if(!typeof level == "number") throw new TypeError("The level provided must be a number!")
+        if (!typeof level == "number") throw new TypeError("The level provided must be a number!")
         let value = 20 * (level * level) + 35
         return value
     }
@@ -220,8 +229,8 @@ class AmariBot {
      * @throws {RatelimitError}
      * @returns {Promise<any>} The raw request data
      */
-    _request(endpoint, query = {}, method = "GET", ) {
-        return this.requestHandler.request(endpoint, query, method)
+    _request(endpoint, query = {}, method = "GET", body = {}) {
+        return this.requestHandler.request(endpoint, query, method, body)
     }
 }
 
