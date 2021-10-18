@@ -14,8 +14,8 @@ class Leaderboard {
     constructor(inputData = {}) {
         this.id = inputData.id
         this.count = inputData.count
-        this.totalCount = inputData.total_count || this.count
-        this.data = inputData.data.map(x => new User(x));
+        inputData.total_count ? (this.totalCount = inputData.total_count) : null
+        this.data = inputData.data.map((x) => new User(x))
 
         /**
          * @private
