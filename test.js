@@ -113,6 +113,12 @@ describe("getGuildRewards", async (done) => {
     it(`should have a Map for the roles property`, async () => {
         expect(rewards.roles).to.be.a(Map)
     })
+    it(`should have a string for a role in the Map`, async () => {
+        expect(rewards.roles.values().next().value).to.be.a('string')
+    })
+    it(`should have a number for a level in the Map`, async () => {
+        expect(rewards.roles.keys().next().value).to.be.a('number')
+    })
 })
 
 describe("getLeaderboardPosition", async (done) => {
