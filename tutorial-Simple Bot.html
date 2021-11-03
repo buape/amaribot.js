@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Tutorial: Simple Bot - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,52 +32,53 @@
 
 <div id="main">
     
-
+    <h1 class="page-title">Tutorial: Simple Bot</h1>
     
 
+    <section>
 
-
+<header>
     
 
+    <h2>Simple Bot</h2>
+</header>
 
-    <section class="package">
-        <h3> </h3>		
-    </section>
+<article>
+    <p>This is an example Discord bot to show you how to initalize the amaribot.js package and perform a request, which in this case, is <a href="/AmariBot#getGuildLeaderboard">getGuildLeaderboard</a></p>
+<pre class="prettyprint source lang-js"><code>// Initalize your packages
+const { Client } = require(&quot;discord.js&quot;)
+const { AmariBot } = require(&quot;./src&quot;)
 
+// Login to Discord
+const client = new Client({ intents: [&quot;GUILDS&quot;, &quot;GUILD_MESSAGES&quot;] })
+client.login(&quot;DISCORD TOKEN&quot;)
 
+// Login to AmariBot
+const amaribot = new AmariBot(&quot;AMARIBOT TOKEN&quot;)
 
+client.on(&quot;messageCreate&quot;, async (message) => {
 
+    // if you ping the bot and then say &quot;top three&quot;
+    if (message.content == `&lt;@!${client.user.id}> top three`) {
 
+        // get the top 3 from the leaderboard of the guild
+        let lb = await amaribot.getGuildLeaderboard(&quot;346474194394939393&quot;, { limit: 3 })
 
+        // if the leaderboard is null
+        if(!lb) return message.channel.send(&quot;Leaderboard is empty&quot;)
 
+        // format the result by mapping it to an array of formatted strings and then joining those elements together
+        let result = lb.data.map((user) => `${user.username} - Level ${user.level} (${user.exp} EXP)`).join(&quot;\n&quot;)
 
+        // send the result!
+        message.channel.send({ content: result })
 
-    
-
-
-
-    <section class="readme usertext">
-        <article><h1>amaribot.js</h1>
-<img src="https://amaribot.com/images/Logo.png" alt="Logo" width="200"/>    
-<p><a href="https://app.circleci.com/pipelines/github/amaribot/amaribot.js/"><img src="https://img.shields.io/circleci/build/github/amaribot/amaribot.js?label=tests&amp;style=for-the-badge&amp;token=24376d2c92845c64381ef6cb370c80b32c7704eb" alt="Tests"></a>
-<a href="https://libraries.io/npm/amaribot.js"><img src="https://img.shields.io/librariesio/release/npm/amaribot.js?style=for-the-badge" alt="Libraries.io dependency status for latest release"></a>
-<a href="https://snyk.io/"><img src="https://img.shields.io/snyk/vulnerabilities/npm/amaribot.js?style=for-the-badge" alt="Snyk Vulnerabilities for npm package"></a></p>
-<p><a href="https://nodejs.org/en/"><img src="https://img.shields.io/node/v/amaribot.js?style=for-the-badge" alt="node-current"></a>
-<a href="https://github.com/amaribot-js/amaribot.js/graphs/contributors"><img src="https://img.shields.io/github/contributors/amaribot/amaribot.js?style=for-the-badge" alt="GitHub contributors"></a>
-<a href="https://www.npmjs.com/package/amaribot.js"><img src="https://img.shields.io/npm/dt/amaribot.js?style=for-the-badge" alt="npm"></a></p>
-<h2>Installation</h2>
-<pre class="prettyprint source lang-bash"><code>npm install amaribot.js
+    }
+})
 </code></pre>
-<h2>Documentation</h2>
-<p>The full documentation for this library can be found at <a href="https://amaribot.js.org">https://amaribot.js.org</a></p>
-<h2>Support</h2>
-<p>If you have any questions or need assistance with this module, go to the <a href="https://discord.gg/EQWMP2uzTp">AmariBot Support Server</a> and ping TheShadow#8124 in the <a href="https://discord.com/channels/346474194394939393/882370014974443530">#amari.js</a> channel!</p></article>
-    </section>
+</article>
 
-
-
-
-
+</section>
 
     
     
