@@ -1,6 +1,6 @@
 # amaribot.js
 
-<img src="https://amaribot.com/images/Logo.png" alt="Logo" width="200"/>    
+<img src="https://amaribot.com/static/media/Flowers.116aee2b.png" alt="Logo" width="200"/>    
 
 
 [![Tests](https://img.shields.io/circleci/build/github/amaribot/amaribot.js?label=tests&style=for-the-badge&token=24376d2c92845c64381ef6cb370c80b32c7704eb)](https://app.circleci.com/pipelines/github/amaribot/amaribot.js/)
