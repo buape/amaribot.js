@@ -4,7 +4,7 @@ This is an example Discord bot to show you how to initalize the amaribot.js pack
 ```js
 // Initalize your packages
 const { Client } = require("discord.js")
-const { AmariBot } = require("./src")
+const { AmariBot } = require("amaribot.js")
 
 // Login to Discord
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES"] })
