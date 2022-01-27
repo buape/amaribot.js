@@ -8,8 +8,8 @@ class RequestHandler {
     }
 
     async request(endpoint, query = {}, method, body, _attempts = 0) {
-        await queue.wait()
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
+            await queue.wait()
             const options = {
                 validateStatus: null,
                 headers: {
