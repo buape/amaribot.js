@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Tutorial: Simple Bot - Documentation</title>
+    <title>errors/APIError.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,53 +32,38 @@
 
 <div id="main">
     
-    <h1 class="page-title">Tutorial: Simple Bot</h1>
+    <h1 class="page-title">errors/APIError.js</h1>
     
 
+    
+
+
+
+    
     <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @extends Error
+ * @property {string} name The type of error (APIError)
+ * @property {number} status HTTP status of the error
+ * @property {string} message The message of this error
+ */
 
-<header>
-    
-
-    <h2>Simple Bot</h2>
-</header>
-
-<article>
-    <p>This is an example Discord bot to show you how to initalize the amaribot.js package and perform a request, which in this case, is <a href="/AmariBot#getGuildLeaderboard">getGuildLeaderboard</a></p>
-<pre class="prettyprint source lang-js"><code>// Initalize your packages
-const { Client } = require(&quot;discord.js&quot;)
-const { AmariBot } = require(&quot;amaribot.js&quot;)
-
-// Login to Discord
-const client = new Client({ intents: [&quot;GUILDS&quot;, &quot;GUILD_MESSAGES&quot;] })
-client.login(&quot;DISCORD TOKEN&quot;)
-
-// Login to AmariBot
-const amaribot = new AmariBot(&quot;AMARIBOT TOKEN&quot;)
-
-client.on(&quot;messageCreate&quot;, async (message) => {
-
-    // if you ping the bot and then say &quot;top three&quot;
-    if (message.content == `&lt;@!${client.user.id}> top three`) {
-
-        // get the top 3 from the leaderboard of the guild
-        let lb = await amaribot.getGuildLeaderboard(&quot;346474194394939393&quot;, { limit: 3 })
-
-        // if the leaderboard is null
-        if(!lb) return message.channel.send(&quot;Leaderboard is empty&quot;)
-
-        // format the result by mapping it to an array of formatted strings and then joining those elements together
-        let result = lb.data.map((user) => `${user.username} - Level ${user.level} (${user.exp} EXP)`).join(&quot;\n&quot;)
-
-        // send the result!
-        message.channel.send({ content: result })
-
+class APIError extends Error {
+    constructor(response) {
+        super();
+        this.name = this.constructor.name;
+        this.status = response.status;
+        this.message = response.data ? response.data.error : undefined
     }
-})
-</code></pre>
-</article>
+}
 
-</section>
+module.exports = APIError;</code></pre>
+        </article>
+    </section>
+
+
+
 
     
     
