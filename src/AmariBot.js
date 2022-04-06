@@ -13,6 +13,7 @@ class AmariBot {
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
      * @param {string} [options.baseURL="https://amaribot.com/api/"] - The base URL for the API requests, defaults to the amaribot.com API
      * @param {string} [options.version="v1"] - The base URL for the API requests, defaults v1
+     * @param {string} [options.rawRoutes=false] - Whether regular leaderboard routes should always return the raw form or not, useful for debugging
      */
     constructor(token, options = {}) {
         if (typeof token !== "string") throw new TypeError("The API token must be a string")
@@ -21,12 +22,14 @@ class AmariBot {
         if (options.baseURL !== undefined && !options.baseURL.endsWith("/")) throw new Error("baseURL must end with a /")
         if (options.version !== undefined && typeof options.version !== "string") throw new TypeError("version must be a string")
         if (options.debug !== undefined && typeof options.debug !== "boolean") throw new TypeError("options.debug must be a boolean")
+        if (options.rawRoutes !== undefined && typeof options.rawRoutes !== "boolean") throw new TypeError("options.rawRoutes must be a boolean")
 
         this.token = token
         this.debug = options.debug || false
         this.baseURL = options.baseURL || "https://amaribot.com/api/"
         this.version = options.version || "v1"
         this.requestHandler = new RequestHandler(this)
+        this.rawRoutes = options.rawRoutes || false
 
         if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
     }
@@ -80,7 +83,7 @@ class AmariBot {
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
         if (options.page !== undefined && typeof options.page !== "number") throw new TypeError("options.page must be a number")
 
-        const data = await this._request(`/guild/leaderboard/${guildId}`, options)
+        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}leaderboard/${guildId}`, options)
         data.id = guildId
         return new Leaderboard(data)
     }
