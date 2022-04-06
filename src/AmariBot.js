@@ -150,7 +150,7 @@ class AmariBot {
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (options.limit !== undefined && typeof options.limit !== "number") throw new TypeError("options.limit must be a number")
 
-        const data = await this._request(`/guild/${this.rawRoutes ? "raw/" : ""}weekly/${guildId}`, options)
+        const data = await this._request(`/guild/raw/weekly/${guildId}`, options)
         data.id = guildId
         return new Leaderboard(data)
     }
