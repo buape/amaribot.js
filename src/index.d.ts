@@ -8,14 +8,15 @@ declare module "amaribot.js" {
         public version: string
         public requestHandler: RequestHandler
         public constructor(token: string, options: AmariBotOptions)
-        public getUserLevel(guildId: string, userId: string|array): Promise<User>|Promise<UserGroup>
+        public getUserLevel(guildId: string, userId: string | array): Promise<User> | Promise<UserGroup>
         public getGuildLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>
         public getRawGuildLeaderboard(guildId: string, options?: GetRawLeaderboardOptions): Promise<Leaderboard>
         public getWeeklyLeaderboard(guildId: string, options?: GetLeaderboardOptions): Promise<Leaderboard>
         public getRawWeeklyLeaderboard(guildId: string, options?: GetRawLeaderboardOptions): Promise<Leaderboard>
         public getGuildRewards(guildId: string, options?: GetRewardOptions): Promise<Rewards>
-        public getLeaderboardPosition(guildId: string, userId: string, options?: GetRewardOptions): Promise<number>
-        public getLeaderboardPosition(level: number): number
+        public getLeaderboardPosition(guildId: string, userId: string): Promise<number>
+        public getWeeklyLeaderboardPosition(guildId: string, userId: string): Promise<number>
+        public getLevelExp(level: number): number
         private _request(endpoint: string, method?: string, query: any): Promise<any>
     }
 

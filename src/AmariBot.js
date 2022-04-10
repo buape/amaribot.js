@@ -9,7 +9,6 @@ class AmariBot {
      * @description This is the main class that you initalize to perform all the requests to the API
      * @param {string} token - The token you use to authenticate to the API
      * @param {object} options - Additional options for the API handler
-     * @param {string} options.token - Your API token from the AmariBot website
      * @param {boolean} [options.debug=false] - Controls whether debug mode is enabled for the library
      * @param {string} [options.baseURL="https://amaribot.com/api/"] - The base URL for the API requests, defaults to the amaribot.com API
      * @param {string} [options.version="v1"] - The base URL for the API requests, defaults v1
@@ -193,13 +192,37 @@ class AmariBot {
      * @throws {RatelimitError}
      * @returns {Promise<number>} The user's position
      */
-    async getLeaderboardPosition(guildId, userId, options = {}) {
+    async getLeaderboardPosition(guildId, userId) {
         if (this.debug) console.debug(`Event: getLeaderboardPosition\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
 
         if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
         if (typeof userId !== "string") throw new TypeError("userId must be a string")
 
         const lb = await this.getRawGuildLeaderboard(guildId, { limit: 500000 })
+        const userData = lb.rawData.data.find((x) => x.id == userId)
+        if (!userData) throw new Error(`User ${userId} not found`)
+        const position = lb.rawData.data.indexOf(userData)
+        return position + 1 // the position is from an array which is 0 based
+    }
+
+    /**
+     * Get a user's position in the weekly leaderboard
+     *
+     * @public
+     * @async
+     * @param {string} guildId - The guild ID to fetch the user from.
+     * @param {string} userId - The user ID to fetch in the guild.
+     * @throws {APIError}
+     * @throws {RatelimitError}
+     * @returns {Promise<number>} The user's position
+     */
+    async getWeeklyLeaderboardPosition(guildId, userId) {
+        if (this.debug) console.debug(`Event: getWeeklyLeaderboardPosition\n  - Guild: ${guildId}\n  - Options: ${JSON.stringify(options, null, 2)}`)
+
+        if (typeof guildId !== "string") throw new TypeError("guildId must be a string")
+        if (typeof userId !== "string") throw new TypeError("userId must be a string")
+
+        const lb = await this.getRawWeeklyLeaderboard(guildId, { limit: 500000 })
         const userData = lb.rawData.data.find((x) => x.id == userId)
         if (!userData) throw new Error(`User ${userId} not found`)
         const position = lb.rawData.data.indexOf(userData)

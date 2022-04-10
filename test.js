@@ -126,13 +126,24 @@ describe("getLeaderboardPosition", async (done) => {
     it(`should return a number greater than 0`, async () => {
         position = await AmariBot.getLeaderboardPosition(guildId, userId)
         expect(position).to.be.a("number")
-    })
+    }).timeout(15000)
     it(`should be greater than 0`, async () => {
         expect(position).to.be.above(0)
-    })
+    }).timeout(15000)
 })
 
-describe("getLeaderboardPosition", async (done) => {
+describe("getWeeklyLeaderboardPosition", async (done) => {
+    let position
+    it(`should return a number greater than 0`, async () => {
+        position = await AmariBot.getWeeklyLeaderboardPosition(guildId, userId)
+        expect(position).to.be.a("number")
+    }).timeout(15000)
+    it(`should be greater than 0`, async () => {
+        expect(position).to.be.above(0)
+    }).timeout(15000)
+})
+
+describe("getLevelExp", async (done) => {
     let nextExp
     it(`should return 35 for level 0`, async () => {
         nextExp = AmariBot.getLevelExp(0)
