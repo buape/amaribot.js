@@ -10,7 +10,7 @@ class RequestHandler {
     async request(endpoint, query = {}, method = "GET", body, _attempts = 0) {
         return new Promise(async (resolve, reject) => {
             await queue.wait()
-            // The following function is stolen from Axios ;p
+            // The following function (encode) is stolen from Axios ;p
             function encode(str) {
                 var charMap = {
                     '!': '%21',
@@ -46,28 +46,27 @@ class RequestHandler {
             };
             if (this._client.debug) console.debug(`Sending request to ${options.url}\nMethod:\n  ${options.method}\nParams:\n  ${query}`)
             try {
-                fetch(url, options)
-                .then((res) => {
-                    if (res.status >= 200 && res.status < 300) {
-                        res.json().then(json => {
-                            resolve(json);
-                            if (this._client.debug) console.debug("Success: \n", json);
-                        });
-                    } else if (res.status === 429) {
-                        res.json().then(json => {
-                            if (this._client.debug) console.debug("Ratelimited: \n", res, json);
-                            reject(new RatelimitError(res, json));
-                        });
-                    } else {
-                        res.json().then(json => {
-                            if (this._client.debug) console.debug("API Error: \n", res, json)
-                            reject(new APIError(res, json));
-                        }).catch(err => {
-                            if (this._client.debug) console.debug("API Error: \n", res)
-                            reject(new APIError(res, null))
-                        });
-                    }
-                });
+                const res = await fetch(url, options);
+                if (res.status >= 200 && res.status < 300) {
+										const json = await res.json();
+										resolve(json);
+										if (this._client.debug) console.debug("Success: \n", json);
+                } else if (res.status === 429) {
+										const json = await res.json();
+                    if (this._client.debug) console.debug("Ratelimited: \n", res, json);
+                    reject(new RatelimitError(res, json));
+                } else {
+										try {
+												const json = await res.json();
+												if (this._client.debug) console.debug("API Error: \n", res, json)
+												reject(new APIError(res, json));
+										} catch (err) {
+												if (this._client.debug) console.debug("API Error: \n", res)
+												reject(new APIError(res, null))
+										}
+                }
+						} catch (err) {
+								reject(err);
             } finally {
                 queue.shift()
             }
