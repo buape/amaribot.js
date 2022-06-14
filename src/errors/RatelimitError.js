@@ -9,11 +9,11 @@ const ms = require("ms")
  */
 
 class RatelimitError extends Error {
-    constructor(response) {
+    constructor(response, data) {
         super();
         this.name = this.constructor.name;
         this.status = response.status;
-        this.remaining = response.data["Ratelimit-Remaining"]
+        this.remaining = data["Ratelimit-Remaining"]
         this.message = 'You are currently ratelimited! Try again in ' + ms(this.remaining)
     }
 }

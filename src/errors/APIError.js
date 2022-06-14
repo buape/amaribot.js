@@ -6,11 +6,11 @@
  */
 
 class APIError extends Error {
-    constructor(response) {
+    constructor(response, data) {
         super();
         this.name = this.constructor.name;
         this.status = response.status;
-        this.message = response.data ? response.data.error : undefined
+        this.message = data ? data.error : undefined
     }
 }
 
