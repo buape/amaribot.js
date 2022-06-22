@@ -1,3 +1,5 @@
+const pkg = require("../package.json")
+
 module.exports = {
     version: pkg.version,
     AmariBot: require("./AmariBot"),
