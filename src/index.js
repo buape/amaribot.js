@@ -1,7 +1,3 @@
-const updateNotifier = require("update-notifier")
-const pkg = require("../package.json")
-updateNotifier({ pkg }).notify()
-
 module.exports = {
     version: pkg.version,
     AmariBot: require("./AmariBot"),
