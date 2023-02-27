@@ -15,4 +15,4 @@
     -   Changed getLevelExp to getNextLevelExp
     -   Updated the documentation website
 
-    [See the full changes here.](https://github.com/amaribot/amaribot.js/pull/15/files)
+    [See the full changes here.](https://github.com/amaribot/amaribot.js/compare/v1.6.1...v2.0.0)
