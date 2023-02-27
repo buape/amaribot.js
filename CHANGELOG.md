@@ -14,5 +14,6 @@
     -   Added a getCombinedLeaderboard method
     -   Changed getLevelExp to getNextLevelExp
     -   Updated the documentation website
+    -   Updated many object's keys to match the internal API keys
 
     [See the full changes here.](https://github.com/amaribot/amaribot.js/compare/v1.6.1...v2.0.0)
