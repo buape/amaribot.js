@@ -1,5 +1,11 @@
 # amaribot.js
 
+## 2.0.1
+
+### Patch Changes
+
+-   Fix a bad import path
+
 ## 2.0.0
 
 ### Major Changes
