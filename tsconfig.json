@@ -1,10 +1,30 @@
 {
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Default",
 	"compilerOptions": {
-		"module": "ESnext",
-		"target": "ESNext",
-		"strict": true,
-		"moduleResolution": "node",
+		"allowJs": false,
+		"composite": true,
+		"declaration": true,
+		"declarationMap": true,
 		"esModuleInterop": true,
-		"skipLibCheck": true
-	}
+		"forceConsistentCasingInFileNames": true,
+		"inlineSources": false,
+		"isolatedModules": true,
+		"lib": ["ES2021"],
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "./dist",
+		"preserveWatchOutput": true,
+		"resolveJsonModule": true,
+		"rootDir": ".",
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "ES2021",
+		"typeRoots": ["src/typings"]
+	},
+	"exclude": ["node_modules", "dist"],
+	"include": ["**/*.ts"]
 }
