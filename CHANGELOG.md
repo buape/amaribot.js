@@ -1,5 +1,11 @@
 # amaribot.js
 
+## 2.0.2
+
+### Patch Changes
+
+-   Support both commonjs and modern es6
+
 ## 2.0.1
 
 ### Patch Changes
