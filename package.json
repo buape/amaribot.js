@@ -1,6 +1,6 @@
 {
 	"name": "amaribot.js",
-	"version": "1.6.1",
+	"version": "2.0.0",
 	"description": "A node.js wrapper for the AmariBot API",
 	"main": "./dist/index.js",
 	"typings": "./dist/index.d.ts",
