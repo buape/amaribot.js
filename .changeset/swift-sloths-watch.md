@@ -2,7 +2,7 @@
 "amaribot.js": major
 ---
 
-This major updating is a **breaking change**!
+This major update is a **breaking change**!
 
 # Major Changes
 - Rewrote the library to Typescript
