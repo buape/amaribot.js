@@ -21,5 +21,6 @@
     -   Changed getLevelExp to getNextLevelExp
     -   Updated the documentation website
     -   Updated many object's keys to match the internal API keys
+    -    Renamed the original APIError to AmariError (and added a new type called APIError for error typing from the API itself)
 
     [See the full changes here.](https://github.com/amaribot/amaribot.js/compare/v1.6.1...v2.0.0)
