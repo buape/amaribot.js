@@ -91,7 +91,7 @@ export class AmariBot {
 		// combine the two leaderboards
 		const combinedLeaderboard = mainLeaderboard.data.map((x) => {
 			const weeklyData = weeklyLeaderboard.data.find((y) => y.id === x.id)
-			const user: APIUser = { weeklyExp: weeklyData?.exp || 0, ...x }
+			const user: APIUser = { ...x, weeklyExp: weeklyData?.exp ?? 0 }
 			return user
 		})
 
