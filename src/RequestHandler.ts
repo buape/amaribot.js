@@ -1,5 +1,5 @@
 import fetch from "node-fetch"
-import { AmariBot, AmariError, RatelimitError } from "."
+import { AmariBot, AmariError, APIError, RatelimitError } from "."
 export class RequestHandler {
 	_client: AmariBot
 	constructor(client: AmariBot) {
@@ -23,16 +23,16 @@ export class RequestHandler {
 			try {
 				const res = await fetch(url, options)
 				if (res.status >= 200 && res.status < 300) {
-					const json = await res.json()
+					const json = await res.json() as APIError
 					resolve(json)
 					if (this._client.debug) console.debug("Success: \n", json)
 				} else if (res.status === 429) {
-					const json = await res.json()
+					const json = await res.json() as APIError
 					if (this._client.debug) console.debug("Ratelimited: \n", res, json)
 					reject(new RatelimitError(res))
 				} else {
 					try {
-						const json = await res.json()
+						const json = await res.json() as APIError
 						if (this._client.debug) console.debug("API Error: \n", res, json)
 						reject(new AmariError(res, json))
 					} catch (err) {
