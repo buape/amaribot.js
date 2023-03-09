@@ -1,5 +1,11 @@
 # amaribot.js
 
+## 2.0.4
+
+### Patch Changes
+
+-   ab8f2f6: Revert node-fetch to v2 for cjs compatibility
+
 ## 2.0.3
 
 ### Patch Changes
