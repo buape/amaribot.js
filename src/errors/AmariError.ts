@@ -5,15 +5,14 @@
  * @property {string} message The message of this error
  */
 
-import { Response } from "node-fetch"
-import { APIError } from ".."
+import { APIError, CustomResponse } from ".."
 
 export class AmariError extends Error {
 	name: string
 	status: number
 	message: string
 
-	constructor(response: Response, data?: APIError) {
+	constructor(response: CustomResponse, data?: APIError) {
 		super()
 		this.name = this.constructor.name
 		this.status = response.status

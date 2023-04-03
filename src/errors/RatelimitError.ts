@@ -1,6 +1,5 @@
-import { Response } from "node-fetch"
 import ms from "ms"
-import { APIError } from ".."
+import { APIError, CustomResponse } from ".."
 
 /**
  * @extends Error
@@ -16,7 +15,7 @@ export class RatelimitError extends Error {
 	remaining: number
 	message: string
 
-	constructor(response: Response, data?: APIError) {
+	constructor(response: CustomResponse, data?: APIError) {
 		super()
 		this.name = this.constructor.name
 		this.status = response.status

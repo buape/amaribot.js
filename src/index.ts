@@ -5,16 +5,22 @@ or just shoot me
 that too
 */
 
+import { Response as NodeFetchResponse, RequestInit } from "node-fetch"
+
 export { RequestHandler } from "./RequestHandler"
 export { AmariBot } from "./AmariBot"
-export { AmariError } from "./errors/APIError"
+export { AmariError } from "./errors/AmariError"
 export { RatelimitError } from "./errors/RatelimitError"
 
 export type AmariBotOptions = {
 	baseURL?: string
 	version?: string
 	debug?: boolean
+	customFetch?: CustomFetch
 }
+
+export type CustomFetch = (url: string, options: RequestInit) => Promise<CustomResponse>
+export type CustomResponse = NodeFetchResponse | Response
 
 export type PaginationOptions = {
 	limit?: number
