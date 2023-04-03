@@ -21,7 +21,7 @@ export class RequestHandler {
 			}
 			if (this._client.debug) console.debug(`Sending request to ${url}\nMethod:\n  ${options.method}\nParams:\n  ${JSON.stringify(query)}`)
 			try {
-				const res = await fetch(url, options)
+				const res = this._client.customFetch ? await this._client.customFetch(url, options) : await fetch(url, options)
 				if (res.status >= 200 && res.status < 300) {
 					const json = await res.json() as APIError
 					resolve(json)

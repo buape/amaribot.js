@@ -7,6 +7,7 @@ import {
 	APIRewards,
 	APIUser,
 	APIWeeklyLeaderboard,
+	CustomFetch,
 	PaginationOptions,
 	RawPaginationOptions,
 } from "."
@@ -17,6 +18,7 @@ export class AmariBot {
 	debug: boolean
 	baseURL: string
 	version: string
+	customFetch?: CustomFetch
 
 	/**
 	 * @private
@@ -34,6 +36,7 @@ export class AmariBot {
 		this.debug = options.debug || false
 		this.baseURL = options.baseURL || "https://amaribot.com/api"
 		this.version = options.version || "v1"
+		if(options.customFetch) this.customFetch = options.customFetch
 		this._requestHandler = new RequestHandler(this)
 
 		if (this.debug) console.debug("amaribot.js initalized\n" + JSON.stringify(options, null, 2))
