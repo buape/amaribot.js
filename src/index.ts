@@ -5,7 +5,7 @@ or just shoot me
 that too
 */
 
-import { Response as NodeFetchResponse } from "node-fetch"
+import { Response as NodeFetchResponse, RequestInit } from "node-fetch"
 
 export { RequestHandler } from "./RequestHandler"
 export { AmariBot } from "./AmariBot"

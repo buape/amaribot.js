@@ -1,5 +1,7 @@
+import fetch from "node-fetch"
 import { AmariBot } from "../src"
 import { expect, expectTypeOf, test } from "vitest"
+import { RequestInit } from "node-fetch"
 
 const guildId = "346474194394939393"
 const userId = "439223656200273932"
