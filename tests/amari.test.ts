@@ -147,3 +147,17 @@ test("The client should calculate the correct level from exp", () => {
 	const xp70 = client.getNextLevelExp(70)
 	expect(xp70).toBe(98035)
 })
+
+
+test("Custom fetch functions should work", async () => {
+	const customClient = new AmariBot(apiKey, {
+		customFetch: async (url: string, options: RequestInit) => {
+			const res = await fetch(url, options)
+			return res
+		}
+	})
+
+	const data = await customClient.getUserLevel(guildId, userId)
+	expect(data).toBeDefined()
+	expect(data.id).toBe(userId)
+})
