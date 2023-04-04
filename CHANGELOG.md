@@ -1,5 +1,11 @@
 # amaribot.js
 
+## 2.1.0
+
+### Minor Changes
+
+-   a426d64: Add customFetch to the options when creating a new client, allowing you the ability to write custom fetch functions
+
 ## 2.0.4
 
 ### Patch Changes
