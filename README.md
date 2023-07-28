@@ -29,4 +29,4 @@ console.log(`${data.id} has ${data.exp} experience and is level ${data.level}`)
 
 ## Support
 
-If you have any questions or need assistance with this module, go to the [AmariBot Support Server](https://discord.gg/EQWMP2uzTp) and ping TheShadow#8124 in the [#amaribot.js](https://discord.com/channels/346474194394939393/882370014974443530) channel!
+If you have any questions or need assistance with this module, go to the [AmariBot Support Server](https://discord.gg/kqefESMzQj) and ping **4shadowed** in the [#amaribot.js](https://discord.com/channels/1133726490001940532/1133773051918569482) channel!
