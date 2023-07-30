@@ -7,7 +7,7 @@ export class RequestHandler {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	async request(endpoint: string, query = {}, method = "GET", body: { [key: string]: any }, _attempts = 0) {
+	async request(endpoint: string, query = {}, method = "GET", body: { [key: string]: any } = {}, _attempts = 0) {
 		return new Promise(async (resolve, reject) => {
 			const url = `${this._client.baseURL}/${this._client.version}${endpoint}${toQueryString(query)}`
 			const options = {
@@ -23,16 +23,16 @@ export class RequestHandler {
 			try {
 				const res = this._client.customFetch ? await this._client.customFetch(url, options) : await fetch(url, options)
 				if (res.status >= 200 && res.status < 300) {
-					const json = await res.json() as APIError
+					const json = (await res.json()) as APIError
 					resolve(json)
 					if (this._client.debug) console.debug("Success: \n", json)
 				} else if (res.status === 429) {
-					const json = await res.json() as APIError
+					const json = (await res.json()) as APIError
 					if (this._client.debug) console.debug("Ratelimited: \n", res, json)
 					reject(new RatelimitError(res))
 				} else {
 					try {
-						const json = await res.json() as APIError
+						const json = (await res.json()) as APIError
 						if (this._client.debug) console.debug("API Error: \n", res, json)
 						reject(new AmariError(res, json))
 					} catch (err) {
