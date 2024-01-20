@@ -1,4 +1,3 @@
-import fetch from "node-fetch"
 import { AmariBot, AmariError, APIError, RatelimitError } from "."
 export class RequestHandler {
 	_client: AmariBot
