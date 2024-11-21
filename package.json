@@ -55,7 +55,7 @@
 		"rimraf": "^5.0.0",
 		"typedoc": "^0.24.0",
 		"typescript": "^5.0.0",
-		"unbuild": "^1.1.2",
+		"unbuild": "^2.0.0",
 		"vitest": "^0.30.0"
 	},
 	"dependencies": {
