@@ -35,8 +35,8 @@ devDependencies:
     specifier: ^8.35.0
     version: 8.35.0
   eslint-config-prettier:
-    specifier: ^8.6.0
-    version: 8.6.0(eslint@8.35.0)
+    specifier: ^9.0.0
+    version: 9.1.0(eslint@8.35.0)
   rimraf:
     specifier: ^5.0.0
     version: 5.0.0
@@ -2043,8 +2043,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier@8.6.0(eslint@8.35.0):
-    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+  /eslint-config-prettier@9.1.0(eslint@8.35.0):
+    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
